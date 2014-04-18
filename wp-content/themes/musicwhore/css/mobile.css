@@ -1,0 +1,42 @@
+/* CSS crunched with Crunch - http://crunchapp.net/ */
+body{background-color:#DCA36C;color:#000;}
+h1,h2,h3,h4,h5,h6{color:#000;}
+a{color:#043D4A;}
+a:active{background-color:#8A352A;}
+a:hover{text-decoration:none;color:#FFF;}
+a.comment-reply-link{border:1px solid #000;border-radius:3px;padding:3px 8px;text-decoration:none;background-color:#EEE;color:#000;}
+cite.fn{margin-left:6px;}
+footer{float:none;width:auto;margin-bottom:1.5em;}
+textarea{width:100%;height:125px;}
+h3.headline{font-family:"Arimo",Helvetica,Arial,sans-serif;font-size:1.5em;}
+.comment-author{margin-bottom:1.5em;}.comment-author img{vertical-align:text-top;}
+.comment-meta{margin-bottom:1.5em;}
+.comment-body{margin-bottom:3em;position:relative;}
+.comment-list,ul.children{list-style:none;}
+.entry-content{float:none;width:auto;padding-left:40px;padding-right:40px;background-color:inherit;padding-top:1.5em;margin-bottom:1.5em;}.entry-content h1,.entry-content h2,.entry-content h3,.entry-content h4,.entry-content h5,.entry-content h6{color:#000;}
+.entry-meta{float:none;width:auto;background-color:#B8220E;color:#FFF;text-align:center;margin-bottom:1.5em;margin-right:auto;}.entry-meta time{font-size:1.25em;}
+.entry-meta a{color:#FFF;}
+.entry-text a{color:#043D4A;}
+.entry-text a:active{background-color:#DC796C;}
+.entry-text a:hover{text-decoration:none;color:#FFF;}
+.headline a{text-decoration:none;}
+.headline a:hover{color:#640431;}
+.headline a:active{background-color:#DC796C;}
+.menu ul{width:auto;margin-top:auto;margin-right:10px;list-style:none;}.menu ul li{float:none;display:inline;margin-left:24px;}
+.nav-icon-list{list-style:none;}.nav-icon-list li{float:none;display:inline;margin-left:6px;}
+#container{width:auto;margin:0 auto;}
+#content{float:none;width:auto;margin-right:0;}
+#masthead{float:none;width:auto;margin-top:1.5em;}
+#masthead-title{float:none;width:auto;padding-left:0;text-align:center;}
+#main-nav{float:none;width:auto;background-color:inherit;margin-bottom:3em;text-align:center;color:#000;}#main-nav a{color:#000;}
+#page-nav{float:none;width:auto;margin-right:0;}
+#footer-content{float:none;width:auto;text-align:center;}
+#page-nav-content{float:none;width:auto;text-align:center;border:0;}
+#page-nav-spacer,#footer-spacer{float:none;width:auto;}
+#search-box{float:none;width:auto;margin-right:0px;}
+#search-input{border-radius:3px;font-size:1em;}
+#search-box label{font-size:1em;}
+#social-list{float:none;width:auto;margin-right:10px;}
+#sidebar-1{float:none;width:auto;padding-left:40px;}
+#title{font-family:"Cabin",Helvetica,Arial,sans-serif;font-size:3em;text-transform:lowercase;margin-bottom:0;}#title a{color:#000;text-decoration:underline;}
+#subtitle{color:#000;font-size:1em;}
