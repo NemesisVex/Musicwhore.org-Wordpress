@@ -1,0 +1,24 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php - [L]
+
+# uploaded files
+RewriteRule ^files/(.*) wp-includes/ms-files.php?file=$1 [L]
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+RewriteRule . index.php [L]
+
+SetEnvIf HOST wp-dev.musicwhore.org dev
+SetEnvIf HOST wp-test.musicwhore.org test
+AuthType Basic
+AuthUserFile /home/nemesisv/.htpasswd
+AuthName "Musicwhore.org WordPress development site"
+require valid-user
+
+Order allow,deny
+Allow from all
+Deny from env=dev
+Deny from env=test
+Satisfy any
