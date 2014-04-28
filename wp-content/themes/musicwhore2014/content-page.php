@@ -12,7 +12,7 @@
 	<?php
 		// Page thumbnail and title.
 		musicwhore2014_post_thumbnail();
-		the_title( '<header class="entry-header"><h1 class="entry-title">', '</h1></header><!-- .entry-header -->' );
+		the_title( '<header class="entry-header"><h2 class="entry-title">', '</h2></header><!-- .entry-header -->' );
 	?>
 
 	<div class="entry-content">

@@ -9,7 +9,7 @@
 ?>
 
 <header class="page-header">
-	<h1 class="page-title"><?php _e( 'Nothing Found', 'musicwhore2014' ); ?></h1>
+	<h2 class="page-title"><?php _e( 'Nothing Found', 'musicwhore2014' ); ?></h2>
 </header>
 
 <div class="page-content">
