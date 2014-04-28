@@ -7,7 +7,7 @@
  * @since Musicwhore2014 1.0
  */
 ?>
-<div id="secondary" class="col-md-4">
+<div id="secondary" class="col-md-3 col-md-offset-1">
 	<?php /*if ( has_nav_menu( 'secondary' ) ) : ?>
 	<nav role="navigation" class="navigation site-navigation secondary-navigation">
 		<?php wp_nav_menu( array( 'theme_location' => 'secondary' ) ); ?>
