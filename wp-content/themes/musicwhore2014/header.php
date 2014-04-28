@@ -72,7 +72,7 @@
 							<span class="icon-bar"></span>
 						</button>
 						<div class="visible-xs">
-							<a href="#" class="navbar-brand">Musicwhore.org</a>
+							<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="navbar-brand"><?php bloginfo( 'name' ); ?></a>
 						</div>
 					</div>
 					<div class="collapse navbar-collapse" id="bs-nav">
