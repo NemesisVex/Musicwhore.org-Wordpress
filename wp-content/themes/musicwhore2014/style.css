@@ -11,6 +11,33 @@ Text Domain: musicwhore2014
 	padding-bottom: 1em;
 }
 
-.comment-metadata, .comment-author {
+.comment-list {
+	list-style: none;
 	padding-bottom: 1em;
+}
+
+.comment-author {
+	position: relative;
+}
+
+.comment-author .avatar {
+	height: 34px;
+	top: 2px;
+	width: 34px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	padding: 2px;
+	position: absolute;
+	left: 0;
+}
+
+.comment-author, .comment-awaiting-moderation, .comment-content, .comment-list .reply, .comment-metadata {
+	padding-left: 50px;
+}
+
+.comments-title {
+	padding-bottom: 1em;
+}
+
+.says {
+	display: none;
 }
