@@ -24,7 +24,7 @@ get_header(); ?>
 			<?php if ( have_posts() ) : ?>
 
 			<header class="archive-header">
-				<h1 class="archive-title">
+				<h2 class="archive-title">
 					<?php
 						if ( is_tax( 'post_format', 'post-format-aside' ) ) :
 							_e( 'Asides', 'musicwhore2014' );
@@ -52,7 +52,7 @@ get_header(); ?>
 
 						endif;
 					?>
-				</h1>
+				</h2>
 			</header><!-- .archive-header -->
 
 			<?php
