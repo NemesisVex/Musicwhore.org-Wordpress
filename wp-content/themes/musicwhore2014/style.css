@@ -1,0 +1,16 @@
+/*
+Theme Name: Musicwhore.org 2014
+Author: Greg Bueno
+Author URI: http://musicwhore.org/
+Description: A WordPress theme customized for Musicwhore.org, based on the Twenty Fourteen Theme by Wordpress.
+Version: 2.0
+Text Domain: musicwhore2014
+*/
+
+.site-info {
+	padding-bottom: 1em;
+}
+
+.comment-metadata, .comment-author {
+	padding-bottom: 1em;
+}
