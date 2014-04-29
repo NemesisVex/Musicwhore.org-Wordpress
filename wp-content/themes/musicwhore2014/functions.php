@@ -499,6 +499,7 @@ function musicwhore2014_page_menu_args( $args ) {
 	return $args;
 }
 add_filter( 'wp_page_menu_args', 'musicwhore2014_page_menu_args' );
+
 /**
  * Override of wp_page_menu
  * 
@@ -572,6 +573,10 @@ function musicwhore2014_page_menu( $args = array() ) {
 		echo $menu;
 	else
 		return $menu;
+}
+
+function musicwhore2014_get_cdn_uri() {
+	return VIGILANTMEDIA_CDN_BASE_URI;
 }
 
 // Implement Custom Header features.

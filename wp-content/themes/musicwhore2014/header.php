@@ -34,6 +34,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Merriweather+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/typography.css">
+	<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/favicon.ico" type="image/x-icon">
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </head>
 
@@ -62,7 +63,7 @@
 				</h1>
 			</div>
 
-			<nav id="primary-navigation" class="site-navigation primary-navigation navbar navbar-default" role="navigation">
+			<nav id="primary-navigation" class="site-navigation primary-navigation navbar navbar-inverse" role="navigation">
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-nav"><?php /*_e( 'Primary Menu', 'musicwhore2014' );*/ ?>
@@ -79,10 +80,10 @@
 						<?php wp_nav_menu( array( 'theme_location' => 'primary', 'fallback_cb' => 'musicwhore2014_page_menu' ) ); ?>
 						<?php get_search_form(); ?>
 						<ul class="nav navbar-nav">
-							<li><a href="http://twitter.com/MusicwhoreOrg/" title="[Twitter]"><img src="http://vigilante.vigilantmedia.com/images/icons/twitter.png" alt="[Twitter]" /></a></li>
-							<li><a href="https://www.facebook.com/pages/Musicwhoreorg/109288145780351" title="[Facebook]"><img src="http://vigilante.vigilantmedia.com/images/icons/facebook.png" alt="[Facebook]" /></a></li>
-							<li><a href="http://last.fm/user/NemesisVex/" title="[Last.fm]"><img src="http://vigilante.vigilantmedia.com/images/icons/lastfm.png" alt="[Last.fm]" /></a></li>
-							<li><a href="/feed/" title="[Feed]"><img src="http://vigilante.vigilantmedia.com/images/icons/feed.png" alt="[Feed]" /></a></li>
+							<li><a href="http://twitter.com/MusicwhoreOrg/" title="[Twitter]"><img src="<?php echo musicwhore2014_get_cdn_uri(); ?>/web/images/icons/twitter.png" alt="[Twitter]" /></a></li>
+							<li><a href="https://www.facebook.com/pages/Musicwhoreorg/109288145780351" title="[Facebook]"><img src="<?php echo musicwhore2014_get_cdn_uri(); ?>/web/images/icons/facebook.png" alt="[Facebook]" /></a></li>
+							<li><a href="http://last.fm/user/NemesisVex/" title="[Last.fm]"><img src="<?php echo musicwhore2014_get_cdn_uri(); ?>/web/images/icons/lastfm.png" alt="[Last.fm]" /></a></li>
+							<li><a href="/feed/" title="[Feed]"><img src="<?php echo musicwhore2014_get_cdn_uri(); ?>/web/images/icons/feed.png" alt="[Feed]" /></a></li>
 						</ul>
 					</div>
 				</div>
