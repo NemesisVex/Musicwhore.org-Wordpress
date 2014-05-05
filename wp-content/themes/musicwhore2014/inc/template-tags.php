@@ -50,7 +50,7 @@ function musicwhore2014_paging_nav() {
 
 	?>
 	<nav class="navigation paging-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'musicwhore2014' ); ?></h1>
+		<h1 class="screen-reader-text sr-only"><?php _e( 'Posts navigation', 'musicwhore2014' ); ?></h1>
 		<div class="pagination loop-pagination">
 			<?php echo $links; ?>
 		</div><!-- .pagination -->
