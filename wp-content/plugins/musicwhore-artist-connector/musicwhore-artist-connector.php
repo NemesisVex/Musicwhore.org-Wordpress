@@ -70,24 +70,7 @@ if (!class_exists('Musicwhore_Artist_Connector')) {
 		}
 
 		public static function activate() {
-			global $wpdb, $mw_db_version;
-			$wpdb->show_errors();
 			
-			$table_name = $wpdb->prefix . 'mw_artists';
-			
-			$create_sql = "CREATE TABLE IF NOT EXISTS `{$table_name}` (
-				`artist_id` int(10) NOT NULL auto_increment,
-				`artist_last_name` varchar(100) NOT NULL,
-				`artist_first_name` varchar(100) NULL,
-				`artist_display_name` varchar(255) NULL,
-				PRIMARY KEY  (`artist_id`),
-				KEY `artist_last_name` (`artist_last_name`)
-			);";
-			
-			if ( $wpdb->get_var("show tables like '{$table_name}'") != $table_name ) {
-				$wpdb->query($create_sql) or die("WPDB error: " . $wpdb->print_error());
-			}
-			add_option('musicwhore_db_version', $mw_db_version);
 		}
 
 		public static function deactivate() {
