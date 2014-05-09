@@ -13,38 +13,148 @@ if (!class_exists('Movabletype_Id_Mapper')) {
 	class Movabletype_Id_Mapper {
 		
 		private $patterns;
+		private $mt_db;
+		private $map_ready;
 		
 		public function __construct() {
-			global $_mt_id_mapper_patterns;
-			
-			$this->patterns = $_mt_id_mapper_patterns;
+			$this->map_ready = false;
 			
 			// Initialize settings in the admin menu.
             add_action('admin_init', array(&$this, 'admin_init'));
         	add_action('admin_menu', array(&$this, 'add_menu'));
 			
-			add_action('init', array(&$this, 'remap_mt'));
+			// Initialize the plugin itself.
+			add_action('parse_query', array(&$this, 'init'));
+			add_action('pre_get_posts', array(&$this, 'remap_mt'));
 		}
 		
+		/**
+		 * init
+		 * 
+		 * init performs a few checks before making an actual remap. It won't
+		 * run for valid WP urls. It won't run if it can't connect to a configured
+		 * database. And it won't run if no patterns are registered from a theme.
+		 * 
+		 * @global type $_mt_id_mapper_registered_patterns
+		 * @global type $wpdb
+		 * @return boolean
+		 */
+		public function init() {
+			global $_mt_id_mapper_registered_patterns, $wpdb;
+			
+			// Ignore anything that isn't singular (post, page, attachment).
+			if (is_singular() === false) {
+				return false;
+			}
+			
+			// Exit if no patterns are registered.
+			do_action('mt_id_mapper_pattern_setup');
+			
+			if (empty($_mt_id_mapper_registered_patterns)) {
+				return false;
+			} else {
+				$this->patterns = $_mt_id_mapper_registered_patterns;
+			}
+			
+			// Establish a connection to configured database. Use the WP database
+			// if none is configured.
+			$mt_db_host = get_option('mt_db_host', DB_HOST);
+			if (empty($mt_db_host)) { $mt_db_host = DB_HOST; }
+			
+			$mt_db_name = get_option('mt_db_name', DB_NAME);
+			if (empty($mt_db_name)) { $mt_db_name = DB_NAME; }
+			
+			$mt_db_user = get_option('mt_db_user', DB_USER);
+			if (empty($mt_db_user)) { $mt_db_user = DB_USER; }
+			
+			$mt_db_password = get_option('mt_db_password', DB_PASSWORD);
+			if (empty($mt_db_password)) { $mt_db_password = DB_PASSWORD; }
+			
+			if (false === $this->mt_db = new wpdb($mt_db_user, $mt_db_password, $mt_db_name, $mt_db_host)) {
+				$this->mt_db = $wpdb;
+			}
+			
+			// Exit if mt_entry table doesn't exist.
+			$mt_entry_table = $this->mt_db->get_var("show tables like 'mt_entry';");
+			if ($mt_entry_table != 'mt_entry') {
+				return false;
+			}
+			
+			// Everything look cool?
+			$this->map_ready = true;
+		}
+		
+		/**
+		 * remap_mt
+		 * 
+		 * remap_mt extracts an entry_id from a URL, queries Movable Type
+		 * for that entry, queries Wordpress on the results of the Movable Type
+		 * query, then redirects if a mapping is made.
+		 * 
+		 */
 		public function remap_mt () {
-			// Don't remap unless we encounter a path that doesn't exist.
-			if (is_404() === true) {
-				// Exit if no patterns are registered.
-				
-				// Extract the ID from the pattern.
-				
-				// Query Wordpress for the post name.
-				
-				// Redirect if there is a match.
+			if ($this->map_ready === false) {
+				return false;
+			}
+			
+			if (is_array($this->patterns)) {
+				// Process each pattern.
+				foreach ($this->patterns as $pattern) {
+					// Match our URL with a pattern.
+					preg_match($pattern->pattern, $_SERVER['REQUEST_URI'], $match);
+					
+					if (count($match) > 0) {
+						// Extract the entry_id.
+						$mt_entry_id = $match[$pattern->offset];
+						
+						// Use that entry_id to pivot on the base name.
+						$wp_entry = $this->get_wp_entry($mt_entry_id);
+						
+						// Redirect to the new URL.
+						if (!empty($wp_entry->ID)) {
+							$url = get_permalink($wp_entry->ID);
+							wp_redirect($url, 301);
+							die();
+						}
+					}
+				}
 			}
 		}
 		
-		public function register_pattern($pattern) {
-			Movabletype_Id_Mapper::$patterns[] = $pattern;
+		/**
+		 * get_wp_entry
+		 * 
+		 * get_wp_entry takes a Movable Type entry ID, queries Movable Type
+		 * for the entry_basename, queries Wordpress with the entry_basename
+		 * and returns the result of the query.
+		 * 
+		 * @global object $wpdb
+		 * @param int $mt_entry_id
+		 * @return object
+		 */
+		protected function get_wp_entry($mt_entry_id) {
+			global $wpdb;
+			
+			$mt_entry = $this->mt_db->get_row( $this->mt_db->prepare( "select * from mt_entry where entry_id=%d", $mt_entry_id ) );
+
+			$post_name = $mt_entry->entry_basename;
+			
+			$wp_entry = $wpdb->get_row( $wpdb->prepare( "select * from $wpdb->posts where post_name=%s", $post_name ) );
+			
+			return $wp_entry;
 		}
 		
+		/**
+		 * admin_init
+		 * 
+		 * admin_init creates the settings page with which we can connect
+		 * to a database with Movable Type.
+		 */
 		public function admin_init() {
 			register_setting('mt_id_mapper-group', 'mt_db_host');
+			register_setting('mt_id_mapper-group', 'mt_db_name');
+			register_setting('mt_id_mapper-group', 'mt_db_user');
+			register_setting('mt_id_mapper-group', 'mt_db_password');
 			
 			add_settings_section('mt_id_mapper-db_section', 'Database Connection', array(&$this, 'settings_section'), 'mt_id_mapper');
 			add_settings_field('mt_id_mapper-db_host', 'Database host', array(&$this, 'settings_input_text'), 'mt_id_mapper', 'mt_id_mapper-db_section', array( 'field' => 'mt_db_host' ));
@@ -106,6 +216,8 @@ if (!class_exists('Movabletype_Id_Mapper')) {
 	}
 }
 
+$_mt_id_mapper_registered_patterns = array();
+
 if (class_exists('Movabletype_Id_Mapper')) {
 	register_activation_hook(__FILE__, array('Movabletype_Id_Mapper', 'activate'));
 	register_activation_hook(__FILE__, array('Movabletype_Id_Mapper', 'deactivate'));
@@ -114,17 +226,28 @@ if (class_exists('Movabletype_Id_Mapper')) {
 }
 
 if (!function_exists('mt_id_mapper_register_pattern')) {
-	$_mt_id_mapper_patterns = array();
 	
-	function mt_id_mapper_register_pattern($pattern) {
-		global $_mt_id_mapper_patterns;
+	/**
+	 * mt_id_mapper_register_pattern
+	 * 
+	 * mt_id_mapper_register_pattern registers a regular expression
+	 * with which to check against the URL of an entry. This function
+	 * accepts a single array with the following keys:
+	 * 
+	 * pattern: The regular expression with a grouping to mark the entry ID.
+	 * offset: The number representing the grouping results, e.g. 2 would represent $2.
+	 * 
+	 * @global array $_mt_id_mapper_registered_patterns
+	 * @param type $pattern
+	 * @return boolean
+	 */
+	function mt_id_mapper_register_pattern ($pattern) {
+		global $_mt_id_mapper_registered_patterns;
 		
-		if (is_array($pattern)) {
-			foreach ($pattern as $one_pattern) {
-				$_mt_id_mapper_patterns[] = $pattern;
-			}
-		} else {
-			$_mt_id_mapper_patterns[] = $pattern;
+		if (!array_key_exists('pattern', $pattern) || !array_key_exists('offset', $pattern)) {
+			return false;
 		}
+		
+		$_mt_id_mapper_registered_patterns[] = (object) $pattern;
 	}
 }
