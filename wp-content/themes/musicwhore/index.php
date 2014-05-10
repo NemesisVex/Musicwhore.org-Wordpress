@@ -1,5 +1,4 @@
 <?php
-	musicwhore_remap_mt();
 	get_header();
 ?>
 
