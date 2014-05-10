@@ -581,117 +581,13 @@ function musicwhore2014_get_cdn_uri() {
 	return VIGILANTMEDIA_CDN_BASE_URI;
 }
 
-/**
- * _remap_mt_entry_to_wp_post
- * 
- * _remap_mt_entry_to_wp_post queries an imported mt_entry table from Movable Type
- * for an entry, then maps the Movable type entry_basename to the Wordpress
- * post_name.
- * 
- * @global object $wpdb The global Wordpress database object
- * @param int $entry_id The entry_id of the mt_entry record to find
- * @return object A Wordpress entry mapped to a Movable Type entry, if available
- */
-function _remap_mt_entry_to_wp_post($mt_entry_id) {
-	global $wpdb;
-	$wpdb->show_errors();
-	
-	// Make sure the mt_entry table exists.
-	if ($wpdb->get_var("show tables like '%mt_entry%'") != 'mt_entry') {
-		throw new Exception("mt_entry has not yet been imported from Movable Type");
-	}
-	
-	// Get the Movable Type entry
-	$mt_entry = $wpdb->get_row('select * from mt_entry where entry_id = ' . $mt_entry_id);
-	
-	// Get the permalink name.
-	$entry_base = $mt_entry->entry_basename;
-
-	// Find the Wordpress entry that matches the permalink.
-	// This does imply that imported entries can NEVER have their permalink names renamed.
-	$wp_query = 'Select * From ' . DB_NAME . '.' . $wpdb->posts . ' Where post_name = \'' . $entry_base . '\'';
-	$wp_entry = $wpdb->get_row($wp_query);
-	
-	// Return the Wordpress entry.
-	return $wp_entry;
-}
-
-/**
- * _remap_mt_category_to_wp_category
- * 
- * _remap_mt_category_to_wp_category queries an imported mt_category table from Movable Type
- * for a category, then maps the Movable type category_label to the Wordpress
- * terms.
- * 
- * @global object $wpdb The global Wordpress database object
- * @param int $mt_category_id The category_id of the mt_category record to find
- * @return object A Wordpress category mapped to a Movable Type cateory, if available
- */
-function _remap_mt_category_to_wp_category($mt_category_id) {
-	global $wpdb;
-	$wpdb->show_errors();
-	
-	// Make sure the mt_entry table exists.
-	if ($wpdb->get_var("show tables like '%mt_category%'") != 'mt_category') {
-		throw new Exception("mt_category has not yet been imported from Movable Type");
-	}
-	
-	// Get the Movable Type category.
-	$mt_entry = $wpdb->get_row('select * from mt_category where category_id = ' . $mt_category_id);
-
-	// Get the permalink.
-	$category_name = $mt_category->category_label;
-
-	// Find the Wordpress entry that matches the category.
-	$wp_query = 'Select * From ' . DB_NAME . '.' . $wpdb->terms . ' Where name = \'' . $category_name . '\'';
-	$wp_category = $wpdb->get_row($wp_query);
-	
-	// Return the category.
-	return $wp_category;
-}
-
-/**
- * musicwhore_remap_mt
- * 
- * musicwhore_remap_mt is the template function to remap Movable Type URLs to Wordpress URLs.
- * 
- * @global object $wpdb The global Wordpress database object.
- */
-function musicwhore2014_remap_mt() {
-	global $wpdb;
-	$wpdb->show_errors();
-	
-	// Remapping mechanism is the same, but ID extraction isn't, so let's
-	// encapsulate that within this anonymous function. It doesn't need to exist
-	// in the global scope.
-	$remap_mt_entry = function ($mt_entry_id) {
-		try {
-			// Get the Wordpress entry from a Movable Type ID.
-			$wp_entry = _remap_mt_entry_to_wp_post($mt_entry_id);
-			// Go there!
-			$url = get_permalink($wp_entry->ID);
-			header('Location: ' . $url, 301);
-			
-		} catch (Exception $ex) {
-			// TODO: Log the exception, but let's send the user to the front page.
-			header('Location: /', 301);
-		}
-		die();
-	};
-	
-	// We've got two types of URLs for which to check.
-	// Match /index.php/mw/entry/{id}/
-	if (preg_match("/^\/(mw\/|)entry\/([0-9]+)/", $_SERVER['REQUEST_URI'], $match)) {
-		$mt_entry_id = $match[2];
-		$remap_mt_entry($mt_entry_id);
-	}
-	
-	// Match /entry.php?entry_id={id}
-	if (preg_match("/entry\.php\?entry_id=([0-9]+)/", $_SERVER['REQUEST_URI'], $match)) {
-		$mt_entry_id = $match[1];
-		$remap_mt_entry($mt_entry_id);
+function musicwhore2014_register_mt_id_patterns() {
+	if (function_exists('mt_id_mapper_register_pattern')) {
+		mt_id_mapper_register_pattern( array('pattern' => "/^\/(mw\/|)entry\/([0-9]+)/", 'offset' => 2) );
+		mt_id_mapper_register_pattern( array('pattern' => "/entry\.php\?entry_id=([0-9]+)/", 'offset' => 1) );
 	}
 }
+add_action( 'mt_id_mapper_pattern_setup', 'musicwhore2014_register_mt_id_patterns' );
 
 // Implement Custom Header features.
 require get_template_directory() . '/inc/custom-header.php';
