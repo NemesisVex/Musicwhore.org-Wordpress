@@ -11,21 +11,33 @@ if (!class_exists('Musicwhore_Album')) {
 	
 	class Musicwhore_Album extends Musicwhore_Model {
 		
+		public $_table = 'mw_albums';
+		public $_primary_key = 'album_id';
+		private $_format_masks = array(
+			2 => 'album', 
+			4 => 'single',
+			8 => 'ep',
+			32 => 'video',
+			64 => 'book',
+		);
+		
 		public function __construct() {
 			parent::__construct();
 			$this->load_relationship( array( 'model' => 'Musicwhore_Artist', 'alias' => 'artist') );
 		}
 		
-		public function get_artist_albums($artist_id) {
-			$albums = $this->mw_db->get_results( $this->mw_db->prepare( 'select * from mw_albums where album_artist_id = %d', $artist_id ) );
+		public function get_artist_albums($artist_id, $args = null) {
+			$albums = $this->get_many_by('album_artist_id', $artist_id, $args);
+			$_this = $this;
+			array_walk($albums, function ($album) use ($_this) {
+				$album->album_format = $_this->parse_format_mask($album->album_format_mask);
+			});
 			return $albums;
 		}
 		
-		public function get_album($album_id) {
-			$album = $this->mw_db->get_row( $this->mw_db->prepare( 'select * from mw_albums where album_id = %d', $album_id ) );
-			return $album;
+		public function parse_format_mask($format_mask) {
+			return $this->_format_masks[$format_mask];
 		}
-		
 	}
 }
 

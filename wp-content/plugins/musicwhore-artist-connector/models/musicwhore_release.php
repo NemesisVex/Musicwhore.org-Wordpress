@@ -11,19 +11,18 @@ if (!class_exists('Musicwhore_Release')) {
 	
 	class Musicwhore_Release extends Musicwhore_Model {
 		
+		public $_table = 'mw_albums_releases';
+		public $_primary_key = 'release_id';
+		
 		public function __construct() {
 			parent::__construct();
 			$this->load_relationship( array( 'model' => 'Musicwhore_Album', 'alias' => 'album') );
+			$this->load_relationship( array( 'model' => 'Musicwhore_Release_Format', 'alias' => 'format' ) );
 		}
 		
 		public function get_album_releases($album_id) {
-			$releases = $this->mw_db->get_results( $this->mw_db->prepare( 'select * from mw_albums_releases where release_album_id = %d', $album_id ) );
+			$releases = $this->get_many_by('release_album_id', $album_id, $args);
 			return $releases;
-		}
-		
-		public function get_release($release_id) {
-			$release = $this->mw_db->get_row( $this->mw_db->prepare( 'select * from mw_albums_releases where release_id = %d', $release_id ) );
-			return $release;
 		}
 	}
 }
