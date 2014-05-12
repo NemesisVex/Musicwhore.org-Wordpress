@@ -4,7 +4,7 @@
         <?php @settings_fields('musicwhore_artist_connector-group'); ?>
         <?php @do_settings_fields('musicwhore_artist_connector-group'); ?>
 
-        <?php @do_settings_sections('musicwhore-artist-connector'); ?>
+        <?php @do_settings_sections('musicwhore_artist_connector'); ?>
 
         <?php @submit_button(); ?>
     </form>

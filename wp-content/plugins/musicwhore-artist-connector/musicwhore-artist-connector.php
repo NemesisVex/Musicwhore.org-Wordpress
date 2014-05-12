@@ -12,63 +12,36 @@
 if (!class_exists('Musicwhore_Artist_Connector')) {
 
 	class Musicwhore_Artist_Connector {
-
+		
+		private $settings;
+		private $post_meta;
+		private $rewrite;
+		
 		public function __construct() {
-			add_action('admin_init', array(&$this, 'admin_init'));
-			add_action('admin_menu', array(&$this, 'add_menu'));
-
-			$plugin = plugin_basename(__FILE__);
-			add_filter("plugin_action_links_$plugin", array($this, 'plugin_settings_link'));
+			// Setup settings.
+			require_once(plugin_dir_path(__FILE__) . '/musicwhore_artist_connector_settings.php');
+			$this->settings = new Musicwhore_Artist_Connector_Settings();
+			
+			// Setup post meta data.
+			require_once(plugin_dir_path(__FILE__) . '/musicwhore_artist_connector_post_meta.php');
+			$this->post_meta = new Musicwhore_Artist_Connector_Post_Meta();
+			
+			// Setup rewrite rules.
+			require_once(plugin_dir_path(__FILE__) . '/musicwhore_artist_connector_rewrite.php');
+			$this->rewrite = new Musicwhore_Artist_Connector_Rewrite();
+			
+			add_action('init', array(&$this, 'init_js'));
+			add_action('init', array(&$this, 'init_css'));
 		}
-
-		public function admin_init() {
-			register_setting('musicwhore_artist_connector-group', 'musicwhore_db_host');
-			register_setting('musicwhore_artist_connector-group', 'musicwhore_db_name');
-			register_setting('musicwhore_artist_connector-group', 'musicwhore_db_user');
-			register_setting('musicwhore_artist_connector-group', 'musicwhore_db_password');
-
-			add_settings_section('musicwhore_artist_connector-section', 'Musicwhore Artist Connector', array(&$this, 'settings_section'), 'musicwhore-artist-connector');
-
-			add_settings_field('musicwhore_artist_connector-db_host', 'Database host', array(&$this, 'settings_input_text_field'), 'musicwhore-artist-connector', 'musicwhore_artist_connector-section', array('field' => 'musicwhore_db_host'));
-			add_settings_field('musicwhore_artist_connector-db_name', 'Database name', array(&$this, 'settings_input_text_field'), 'musicwhore-artist-connector', 'musicwhore_artist_connector-section', array('field' => 'musicwhore_db_name'));
-			add_settings_field('musicwhore_artist_connector-db_user', 'Database user', array(&$this, 'settings_input_text_field'), 'musicwhore-artist-connector', 'musicwhore_artist_connector-section', array('field' => 'musicwhore_db_user'));
-			add_settings_field('musicwhore_artist_connector-db_password', 'Database password', array(&$this, 'settings_input_password_field'), 'musicwhore-artist-connector', 'musicwhore_artist_connector-section', array('field' => 'musicwhore_db_password'));
+		
+		public function init_js() {
+			wp_enqueue_script('chosen-js', plugin_dir_url(__FILE__) . 'js/chosen/chosen.jquery.min.js');
 		}
-
-		public function settings_section() {
-			echo "Connection settings for the Musicwhore.org artist database";
+		
+		public function init_css() {
+			wp_enqueue_style('chosen-css', plugin_dir_url(__FILE__) . 'js/chosen/chosen.min.css' );
 		}
-
-		public function settings_input_text_field($args) {
-			$field = $args['field'];
-			$value = get_option($field);
-			echo sprintf('<input type="text" name="%s" id="%s" value="%s" />', $field, $field, $value);
-		}
-
-		public function settings_input_password_field($args) {
-			$field = $args['field'];
-			$value = get_option($field);
-			echo sprintf('<input type="password" name="%s" id="%s" value="%s" />', $field, $field, $value);
-		}
-
-		public function add_menu() {
-			add_options_page('Musicwhore Artist Connector Settings', 'Musicwhore Artist Connector', 'manage_options', 'musicwhore_artist_connector', array(&$this, 'connector_settings_page'));
-		}
-
-		public function connector_settings_page() {
-			if (!current_user_can('manage_options')) {
-				wp_die('You do not have sufficient permissions to access this page.');
-			}
-
-			include(sprintf("%s/templates/settings.php", dirname(__FILE__)));
-		}
-
-		public function plugin_settings_link($links) {
-			$settings_link = '<a href="options-general.php?page=musicwhore_artist_connector">Settings</a>';
-			array_unshift($links, $settings_link);
-			return $links;
-		}
-
+		
 		public static function activate() {
 			
 		}
@@ -89,5 +62,8 @@ if (class_exists('Musicwhore_Artist_Connector')) {
 
 	$mw_artist_connector = new Musicwhore_Artist_Connector();
 	
+	// Setup template tags.
+	require_once(plugin_dir_path(__FILE__) . '/musicwhore_artist_connector_template_functions.php');
+
 	$mw_db_version = '0.01';
 }
