@@ -3,8 +3,8 @@
  * The template for displaying featured posts on the front page
  *
  * @package WordPress
- * @subpackage Musicwhore2014
- * @since Musicwhore2014 1.0
+ * @subpackage MusicwhoreArchive
+ * @since MusicwhoreArchive 1.0
  */
 ?>
 
@@ -16,16 +16,16 @@
 			if ( 'grid' == get_theme_mod( 'featured_content_layout' ) ) {
 				the_post_thumbnail();
 			} else {
-				the_post_thumbnail( 'musicwhore2014-full-width' );
+				the_post_thumbnail( 'musicwhorearchive-full-width' );
 			}
 		endif;
 	?>
 	</a>
 
 	<header class="entry-header">
-		<?php if ( in_array( 'category', get_object_taxonomies( get_post_type() ) ) && musicwhore2014_categorized_blog() ) : ?>
+		<?php if ( in_array( 'category', get_object_taxonomies( get_post_type() ) ) && musicwhorearchive_categorized_blog() ) : ?>
 		<div class="entry-meta">
-			<span class="cat-links"><?php echo get_the_category_list( _x( ', ', 'Used between list items, there is a space after the comma.', 'musicwhore2014' ) ); ?></span>
+			<span class="cat-links"><?php echo get_the_category_list( _x( ', ', 'Used between list items, there is a space after the comma.', 'musicwhorearchive' ) ); ?></span>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
 

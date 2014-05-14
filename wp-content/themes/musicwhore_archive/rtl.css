@@ -325,13 +325,13 @@ td {
 	text-align: left;
 }
 
-.widget_musicwhore2014_ephemera .entry-content ul,
-.widget_musicwhore2014_ephemera .entry-content ol {
+.widget_musicwhorearchive_ephemera .entry-content ul,
+.widget_musicwhorearchive_ephemera .entry-content ol {
 	margin: 0 20px 18px 0;
 }
 
-.widget_musicwhore2014_ephemera .entry-content li > ul,
-.widget_musicwhore2014_ephemera .entry-content li > ol {
+.widget_musicwhorearchive_ephemera .entry-content li > ul,
+.widget_musicwhorearchive_ephemera .entry-content li > ol {
 	margin: 0 20px 0 0;
 }
 
@@ -347,7 +347,7 @@ td {
 	margin-left: auto;
 }
 
-.content-sidebar .widget_musicwhore2014_ephemera .widget-title:before {
+.content-sidebar .widget_musicwhorearchive_ephemera .widget-title:before {
 	margin: -1px 0 0 18px;
 }
 

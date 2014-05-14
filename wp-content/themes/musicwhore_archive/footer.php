@@ -5,8 +5,8 @@
  * Contains footer content and the closing of the #main and #page div elements.
  *
  * @package WordPress
- * @subpackage Musicwhore2014
- * @since Musicwhore2014 1.0
+ * @subpackage MusicwhoreArchive
+ * @since MusicwhoreArchive 1.0
  */
 ?>
 
@@ -17,8 +17,8 @@
 			<?php get_sidebar( 'footer' ); ?>
 
 			<div class="site-info">
-				<?php do_action( 'musicwhore2014_credits' ); ?>
-				<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'musicwhore2014' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'musicwhore2014' ), 'WordPress' ); ?></a>
+				<?php do_action( 'musicwhorearchive_credits' ); ?>
+				<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'musicwhorearchive' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'musicwhorearchive' ), 'WordPress' ); ?></a>
 			</div><!-- .site-info -->
 		</footer><!-- #colophon -->
 	</div><!-- #page -->

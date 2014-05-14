@@ -3,8 +3,8 @@
  * The template for displaying featured content
  *
  * @package WordPress
- * @subpackage Musicwhore2014
- * @since Musicwhore2014 1.0
+ * @subpackage MusicwhoreArchive
+ * @since MusicwhoreArchive 1.0
  */
 ?>
 
@@ -14,11 +14,11 @@
 		/**
 		 * Fires before the Twenty Fourteen featured content.
 		 *
-		 * @since Musicwhore2014 1.0
+		 * @since MusicwhoreArchive 1.0
 		 */
-		do_action( 'musicwhore2014_featured_posts_before' );
+		do_action( 'musicwhorearchive_featured_posts_before' );
 
-		$featured_posts = musicwhore2014_get_featured_posts();
+		$featured_posts = musicwhorearchive_get_featured_posts();
 		foreach ( (array) $featured_posts as $order => $post ) :
 			setup_postdata( $post );
 
@@ -29,9 +29,9 @@
 		/**
 		 * Fires after the Twenty Fourteen featured content.
 		 *
-		 * @since Musicwhore2014 1.0
+		 * @since MusicwhoreArchive 1.0
 		 */
-		do_action( 'musicwhore2014_featured_posts_after' );
+		do_action( 'musicwhorearchive_featured_posts_after' );
 
 		wp_reset_postdata();
 	?>

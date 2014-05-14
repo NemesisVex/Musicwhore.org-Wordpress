@@ -5,8 +5,8 @@
  * Displays all of the <head> section and everything up till <div id="main">
  *
  * @package WordPress
- * @subpackage Musicwhore2014
- * @since Musicwhore2014 1.0
+ * @subpackage MusicwhoreArchive
+ * @since MusicwhoreArchive 1.0
  */
 ?><!DOCTYPE html>
 <!--[if IE 7]>
@@ -66,8 +66,8 @@
 			<nav id="primary-navigation" class="site-navigation primary-navigation navbar navbar-inverse" role="navigation">
 				<div class="container-fluid">
 					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-nav"><?php /*_e( 'Primary Menu', 'musicwhore2014' );*/ ?>
-							<a class="screen-reader-text skip-link sr-only" href="#content"><?php _e( 'Skip to content', 'musicwhore2014' ); ?></a>
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-nav"><?php /*_e( 'Primary Menu', 'musicwhorearchive' );*/ ?>
+							<a class="screen-reader-text skip-link sr-only" href="#content"><?php _e( 'Skip to content', 'musicwhorearchive' ); ?></a>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
@@ -77,13 +77,13 @@
 						</div>
 					</div>
 					<div class="collapse navbar-collapse" id="bs-nav">
-						<?php wp_nav_menu( array( 'theme_location' => 'primary', 'fallback_cb' => 'musicwhore2014_page_menu' ) ); ?>
+						<?php wp_nav_menu( array( 'theme_location' => 'primary', 'fallback_cb' => 'musicwhorearchive_page_menu' ) ); ?>
 						<?php get_search_form(); ?>
 						<ul class="nav navbar-nav">
-							<li><a href="http://twitter.com/MusicwhoreOrg/" title="[Twitter]"><img src="<?php echo musicwhore2014_get_cdn_uri(); ?>/web/images/icons/twitter.png" alt="[Twitter]" /></a></li>
-							<li><a href="https://www.facebook.com/pages/Musicwhoreorg/109288145780351" title="[Facebook]"><img src="<?php echo musicwhore2014_get_cdn_uri(); ?>/web/images/icons/facebook.png" alt="[Facebook]" /></a></li>
-							<li><a href="http://last.fm/user/NemesisVex/" title="[Last.fm]"><img src="<?php echo musicwhore2014_get_cdn_uri(); ?>/web/images/icons/lastfm.png" alt="[Last.fm]" /></a></li>
-							<li><a href="/feed/" title="[Feed]"><img src="<?php echo musicwhore2014_get_cdn_uri(); ?>/web/images/icons/feed.png" alt="[Feed]" /></a></li>
+							<li><a href="http://twitter.com/MusicwhoreOrg/" title="[Twitter]"><img src="<?php echo musicwhorearchive_get_cdn_uri(); ?>/web/images/icons/twitter.png" alt="[Twitter]" /></a></li>
+							<li><a href="https://www.facebook.com/pages/Musicwhoreorg/109288145780351" title="[Facebook]"><img src="<?php echo musicwhorearchive_get_cdn_uri(); ?>/web/images/icons/facebook.png" alt="[Facebook]" /></a></li>
+							<li><a href="http://last.fm/user/NemesisVex/" title="[Last.fm]"><img src="<?php echo musicwhorearchive_get_cdn_uri(); ?>/web/images/icons/lastfm.png" alt="[Last.fm]" /></a></li>
+							<li><a href="/feed/" title="[Feed]"><img src="<?php echo musicwhorearchive_get_cdn_uri(); ?>/web/images/icons/feed.png" alt="[Feed]" /></a></li>
 						</ul>
 					</div>
 				</div>

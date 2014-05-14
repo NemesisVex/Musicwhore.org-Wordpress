@@ -5,8 +5,8 @@
  * @link http://codex.wordpress.org/Template_Hierarchy
  *
  * @package WordPress
- * @subpackage Musicwhore2014
- * @since Musicwhore2014 1.0
+ * @subpackage MusicwhoreArchive
+ * @since MusicwhoreArchive 1.0
  */
 
 get_header(); ?>
@@ -28,7 +28,7 @@ get_header(); ?>
 						 */
 						the_post();
 
-						printf( __( 'All posts by %s', 'musicwhore2014' ), get_the_author() );
+						printf( __( 'All posts by %s', 'musicwhorearchive' ), get_the_author() );
 					?>
 				</h2>
 				<?php if ( get_the_author_meta( 'description' ) ) : ?>
@@ -56,7 +56,7 @@ get_header(); ?>
 
 					endwhile;
 					// Previous/next page navigation.
-					musicwhore2014_paging_nav();
+					musicwhorearchive_paging_nav();
 
 				else :
 					// If no content, include the "No posts found" template.
@@ -70,5 +70,5 @@ get_header(); ?>
 
 <?php
 get_sidebar( 'content' );
-get_sidebar();
+get_sidebar( 'musicwhorearchive');
 get_footer();

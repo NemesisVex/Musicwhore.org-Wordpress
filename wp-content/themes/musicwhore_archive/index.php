@@ -10,8 +10,8 @@
  * @link http://codex.wordpress.org/Template_Hierarchy
  *
  * @package WordPress
- * @subpackage Musicwhore2014
- * @since Musicwhore2014 1.0
+ * @subpackage MusicwhoreArchive
+ * @since MusicwhoreArchive 1.0
  */
 
 get_header(); ?>
@@ -19,7 +19,7 @@ get_header(); ?>
 <div id="main-content" class="main-content col-md-8">
 
 <?php
-	if ( is_front_page() && musicwhore2014_has_featured_posts() ) {
+	if ( is_front_page() && musicwhorearchive_has_featured_posts() ) {
 		// Include the featured content template.
 		get_template_part( 'featured-content' );
 	}
@@ -42,7 +42,7 @@ get_header(); ?>
 
 				endwhile;
 				// Previous/next post navigation.
-				musicwhore2014_paging_nav();
+				musicwhorearchive_paging_nav();
 
 			else :
 				// If no content, include the "No posts found" template.
@@ -57,5 +57,5 @@ get_header(); ?>
 </div><!-- #main-content -->
 
 <?php
-get_sidebar();
+get_sidebar( 'musicwhorearchive' );
 get_footer();

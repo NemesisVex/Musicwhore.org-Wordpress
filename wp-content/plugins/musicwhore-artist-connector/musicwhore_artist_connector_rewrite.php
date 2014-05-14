@@ -20,7 +20,9 @@ if (!class_exists('Musicwhore_Artist_Connector_Rewrite')) {
 			
 			add_rewrite_rule('artist/browse/([^/]*)', 'index.php?pagename=artist&module=artist&browse=$matches[1]', 'top');
 			add_rewrite_rule('artist/browse', 'index.php?pagename=artist&module=artist&browse=all', 'top');
-			add_rewrite_rule('artist/albums/([^/]*)', 'index.php?pagename=artist&module=artist&filter=$matches[1]', 'top');
+			add_rewrite_rule('artist/albums/([^/]*)', 'index.php?pagename=artist&module=artist&section=albums&filter=$matches[1]', 'top');
+			add_rewrite_rule('artist/bio/([^/]*)', 'index.php?pagename=artist&module=artist&section=bio&filter=$matches[1]', 'top');
+			add_rewrite_rule('artist/posts/([^/]*)', 'index.php?pagename=artist&module=artist&section=posts&filter=$matches[1]', 'top');
 			add_rewrite_rule('artist/([^/]*)', 'index.php?pagename=artist&module=artist&filter=$matches[1]', 'top');
 			add_rewrite_rule('album/([^/]*)', 'index.php?pagename=artist&module=album&filter=$matches[1]', 'top');
 			add_rewrite_rule('release/([^/]*)', 'index.php?pagename=artist&module=release&filter=$matches[1]', 'top');
@@ -31,6 +33,7 @@ if (!class_exists('Musicwhore_Artist_Connector_Rewrite')) {
 			$vars[] = 'module';
 			$vars[] = 'filter';
 			$vars[] = 'browse';
+			$vars[] = 'section';
 			return $vars;
 		}
 	}

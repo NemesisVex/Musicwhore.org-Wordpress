@@ -3,8 +3,8 @@
  * The template for displaying Search Results pages
  *
  * @package WordPress
- * @subpackage Musicwhore2014
- * @since Musicwhore2014 1.0
+ * @subpackage MusicwhoreArchive
+ * @since MusicwhoreArchive 1.0
  */
 
 get_header(); ?>
@@ -15,7 +15,7 @@ get_header(); ?>
 			<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
-				<h2 class="page-title"><?php printf( __( 'Search Results for: %s', 'musicwhore2014' ), get_search_query() ); ?></h2>
+				<h2 class="page-title"><?php printf( __( 'Search Results for: %s', 'musicwhorearchive' ), get_search_query() ); ?></h2>
 			</header><!-- .page-header -->
 
 				<?php
@@ -31,7 +31,7 @@ get_header(); ?>
 
 					endwhile;
 					// Previous/next post navigation.
-					musicwhore2014_paging_nav();
+					musicwhorearchive_paging_nav();
 
 				else :
 					// If no content, include the "No posts found" template.

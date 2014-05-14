@@ -3,8 +3,8 @@
  * Template Name: Contributor Page
  *
  * @package WordPress
- * @subpackage Musicwhore2014
- * @since Musicwhore2014 1.0
+ * @subpackage MusicwhoreArchive
+ * @since MusicwhoreArchive 1.0
  */
 
 get_header(); ?>
@@ -12,7 +12,7 @@ get_header(); ?>
 <div id="main-content" class="main-content">
 
 <?php
-	if ( is_front_page() && musicwhore2014_has_featured_posts() ) {
+	if ( is_front_page() && musicwhorearchive_has_featured_posts() ) {
 		// Include the featured content template.
 		get_template_part( 'featured-content' );
 	}
@@ -30,9 +30,9 @@ get_header(); ?>
 					the_title( '<header class="entry-header"><h3 class="entry-title">', '</h3></header><!-- .entry-header -->' );
 
 					// Output the authors list.
-					musicwhore2014_list_authors();
+					musicwhorearchive_list_authors();
 
-					edit_post_link( __( 'Edit', 'musicwhore2014' ), '<footer class="entry-meta"><span class="edit-link">', '</span></footer>' );
+					edit_post_link( __( 'Edit', 'musicwhorearchive' ), '<footer class="entry-meta"><span class="edit-link">', '</span></footer>' );
 				?>
 			</article><!-- #post-## -->
 

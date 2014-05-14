@@ -44,7 +44,7 @@ if (!class_exists('Musicwhore_Model')) {
 				$prepared_query = "select $fields from $this->_table";
 			}
 			
-			$result = $this->mw_db->get_row($prepared_query);
+			$result = $this->mw_db->get_results($prepared_query);
 			
 			return $result;
 		}

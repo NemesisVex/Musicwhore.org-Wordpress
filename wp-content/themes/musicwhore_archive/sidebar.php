@@ -3,8 +3,8 @@
  * The Sidebar containing the main widget area
  *
  * @package WordPress
- * @subpackage Musicwhore2014
- * @since Musicwhore2014 1.0
+ * @subpackage MusicwhoreArchive
+ * @since MusicwhoreArchive 1.0
  */
 ?>
 <div id="secondary" class="col-md-3 col-md-offset-1">

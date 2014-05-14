@@ -4,7 +4,7 @@
  *
  * @package WordPress
  * @subpackage MusicwhoreArchive
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  */
 
 $module = get_query_var('module');
@@ -30,5 +30,5 @@ get_header(); ?>
 </div><!-- #main-content -->
 
 <?php
-get_sidebar();
+get_sidebar( 'musicwhorearchive' );
 get_footer();

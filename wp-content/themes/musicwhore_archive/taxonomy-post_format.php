@@ -12,8 +12,8 @@
  * @link http://codex.wordpress.org/Template_Hierarchy
  *
  * @package WordPress
- * @subpackage Musicwhore2014
- * @since Musicwhore2014 1.0
+ * @subpackage MusicwhoreArchive
+ * @since MusicwhoreArchive 1.0
  */
 
 get_header(); ?>
@@ -27,28 +27,28 @@ get_header(); ?>
 				<h2 class="archive-title">
 					<?php
 						if ( is_tax( 'post_format', 'post-format-aside' ) ) :
-							_e( 'Asides', 'musicwhore2014' );
+							_e( 'Asides', 'musicwhorearchive' );
 
 						elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-							_e( 'Images', 'musicwhore2014' );
+							_e( 'Images', 'musicwhorearchive' );
 
 						elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-							_e( 'Videos', 'musicwhore2014' );
+							_e( 'Videos', 'musicwhorearchive' );
 
 						elseif ( is_tax( 'post_format', 'post-format-audio' ) ) :
-							_e( 'Audio', 'musicwhore2014' );
+							_e( 'Audio', 'musicwhorearchive' );
 
 						elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-							_e( 'Quotes', 'musicwhore2014' );
+							_e( 'Quotes', 'musicwhorearchive' );
 
 						elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-							_e( 'Links', 'musicwhore2014' );
+							_e( 'Links', 'musicwhorearchive' );
 
 						elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) :
-							_e( 'Galleries', 'musicwhore2014' );
+							_e( 'Galleries', 'musicwhorearchive' );
 
 						else :
-							_e( 'Archives', 'musicwhore2014' );
+							_e( 'Archives', 'musicwhorearchive' );
 
 						endif;
 					?>
@@ -68,7 +68,7 @@ get_header(); ?>
 
 					endwhile;
 					// Previous/next page navigation.
-					musicwhore2014_paging_nav();
+					musicwhorearchive_paging_nav();
 
 				else :
 					// If no content, include the "No posts found" template.

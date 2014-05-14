@@ -2,7 +2,7 @@
  * Twenty Fourteen keyboard support for image navigation.
  */
 ( function( $ ) {
-	$( document ).on( 'keydown.musicwhore2014', function( e ) {
+	$( document ).on( 'keydown.musicwhorearchive', function( e ) {
 		var url = false;
 
 		// Left arrow key code.

@@ -18,6 +18,12 @@ if (!class_exists('Musicwhore_Artist')) {
 			parent::__construct();
 		}
 		
+		public function get($id, $args = null) {
+			$artist = parent::get($id, $args);
+			$artist->artist_display_name = $this->format_artist_name($artist);
+			return $artist;
+		}
+		
 		public function get_artists($filter = null) {
 			if (!empty($filter)) {
 				$artists = $this->get_many_like('artist_last_name', $filter, 'after', array( 'order_by' => 'artist_last_name' ));

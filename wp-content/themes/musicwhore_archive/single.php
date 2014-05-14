@@ -3,8 +3,8 @@
  * The Template for displaying all single posts
  *
  * @package WordPress
- * @subpackage Musicwhore2014
- * @since Musicwhore2014 1.0
+ * @subpackage MusicwhoreArchive
+ * @since MusicwhoreArchive 1.0
  */
 
 get_header(); ?>
@@ -23,7 +23,7 @@ get_header(); ?>
 					get_template_part( 'content', get_post_format() );
 
 					// Previous/next post navigation.
-					musicwhore2014_post_nav();
+					musicwhorearchive_post_nav();
 
 					// If comments are open or we have at least one comment, load up the comment template.
 					if ( comments_open() || get_comments_number() ) {
@@ -36,5 +36,5 @@ get_header(); ?>
 
 <?php
 get_sidebar( 'content' );
-get_sidebar();
+get_sidebar( 'musicwhorearchive' );
 get_footer();

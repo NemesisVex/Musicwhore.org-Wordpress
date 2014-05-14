@@ -3,17 +3,17 @@
  * Custom template tags for Twenty Fourteen
  *
  * @package WordPress
- * @subpackage Musicwhore2014
- * @since Musicwhore2014 1.0
+ * @subpackage MusicwhoreArchive
+ * @since MusicwhoreArchive 1.0
  */
 
-if ( ! function_exists( 'musicwhore2014_paging_nav' ) ) :
+if ( ! function_exists( 'musicwhorearchive_paging_nav' ) ) :
 /**
  * Display navigation to next/previous set of posts when applicable.
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  */
-function musicwhore2014_paging_nav() {
+function musicwhorearchive_paging_nav() {
 	// Don't print empty markup if there's only one page.
 	if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
 		return;
@@ -42,15 +42,15 @@ function musicwhore2014_paging_nav() {
 		'current'  => $paged,
 		'mid_size' => 1,
 		'add_args' => array_map( 'urlencode', $query_args ),
-		'prev_text' => __( '&larr; Previous', 'musicwhore2014' ),
-		'next_text' => __( 'Next &rarr;', 'musicwhore2014' ),
+		'prev_text' => __( '&larr; Previous', 'musicwhorearchive' ),
+		'next_text' => __( 'Next &rarr;', 'musicwhorearchive' ),
 	) );
 
 	if ( $links ) :
 
 	?>
 	<nav class="navigation paging-navigation" role="navigation">
-		<h1 class="screen-reader-text sr-only"><?php _e( 'Posts navigation', 'musicwhore2014' ); ?></h1>
+		<h1 class="screen-reader-text sr-only"><?php _e( 'Posts navigation', 'musicwhorearchive' ); ?></h1>
 		<div class="pagination loop-pagination">
 			<?php echo $links; ?>
 		</div><!-- .pagination -->
@@ -60,13 +60,13 @@ function musicwhore2014_paging_nav() {
 }
 endif;
 
-if ( ! function_exists( 'musicwhore2014_post_nav' ) ) :
+if ( ! function_exists( 'musicwhorearchive_post_nav' ) ) :
 /**
  * Display navigation to next/previous post when applicable.
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  */
-function musicwhore2014_post_nav() {
+function musicwhorearchive_post_nav() {
 	// Don't print empty markup if there's nowhere to navigate.
 	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
 	$next     = get_adjacent_post( false, '', false );
@@ -77,14 +77,14 @@ function musicwhore2014_post_nav() {
 
 	?>
 	<nav class="navigation post-navigation" role="navigation">
-		<h4 class="screen-reader-text sr-only"><?php _e( 'Post navigation', 'musicwhore2014' ); ?></h4>
+		<h4 class="screen-reader-text sr-only"><?php _e( 'Post navigation', 'musicwhorearchive' ); ?></h4>
 		<div class="nav-links">
 			<ul class="pager">
 			<?php if ( is_attachment() ) : ?>
-				<li><?php previous_post_link( '%link', __( '<span class="meta-nav">Published In</span>%title', 'musicwhore2014' ) ); ?></li>
+				<li><?php previous_post_link( '%link', __( '<span class="meta-nav">Published In</span>%title', 'musicwhorearchive' ) ); ?></li>
 			<?php else : ?>
-				<li><?php previous_post_link( '%link', __( '<span class="meta-nav" title="Previous Post: %title">Previous</span>', 'musicwhore2014' ) ); ?></li>
-				<li><?php next_post_link( '%link', __( '<span class="meta-nav" title="Next Post: %title">Next</span>', 'musicwhore2014' ) ); ?></li>
+				<li><?php previous_post_link( '%link', __( '<span class="meta-nav" title="Previous Post: %title">Previous</span>', 'musicwhorearchive' ) ); ?></li>
+				<li><?php next_post_link( '%link', __( '<span class="meta-nav" title="Next Post: %title">Next</span>', 'musicwhorearchive' ) ); ?></li>
 			<?php endif; ?>
 			</ul>
 		</div><!-- .nav-links -->
@@ -93,15 +93,15 @@ function musicwhore2014_post_nav() {
 }
 endif;
 
-if ( ! function_exists( 'musicwhore2014_posted_on' ) ) :
+if ( ! function_exists( 'musicwhorearchive_posted_on' ) ) :
 /**
  * Print HTML with meta information for the current post-date/time and author.
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  */
-function musicwhore2014_posted_on() {
+function musicwhorearchive_posted_on() {
 	if ( is_sticky() && is_home() && ! is_paged() ) {
-		echo '<li><span class="glyphicon glyphicon-star"></span> <span class="featured-post">' . __( 'Sticky', 'musicwhore2014' ) . '</span></li>';
+		echo '<li><span class="glyphicon glyphicon-star"></span> <span class="featured-post">' . __( 'Sticky', 'musicwhorearchive' ) . '</span></li>';
 	}
 
 	// Set up and print post meta information.
@@ -118,12 +118,12 @@ endif;
 /**
  * Find out if blog has more than one category.
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  *
  * @return boolean true if blog has more than 1 category
  */
-function musicwhore2014_categorized_blog() {
-	if ( false === ( $all_the_cool_cats = get_transient( 'musicwhore2014_category_count' ) ) ) {
+function musicwhorearchive_categorized_blog() {
+	if ( false === ( $all_the_cool_cats = get_transient( 'musicwhorearchive_category_count' ) ) ) {
 		// Create an array of all the categories that are attached to posts
 		$all_the_cool_cats = get_categories( array(
 			'hide_empty' => 1,
@@ -132,29 +132,29 @@ function musicwhore2014_categorized_blog() {
 		// Count the number of categories that are attached to the posts
 		$all_the_cool_cats = count( $all_the_cool_cats );
 
-		set_transient( 'musicwhore2014_category_count', $all_the_cool_cats );
+		set_transient( 'musicwhorearchive_category_count', $all_the_cool_cats );
 	}
 
 	if ( 1 !== (int) $all_the_cool_cats ) {
-		// This blog has more than 1 category so musicwhore2014_categorized_blog should return true
+		// This blog has more than 1 category so musicwhorearchive_categorized_blog should return true
 		return true;
 	} else {
-		// This blog has only 1 category so musicwhore2014_categorized_blog should return false
+		// This blog has only 1 category so musicwhorearchive_categorized_blog should return false
 		return false;
 	}
 }
 
 /**
- * Flush out the transients used in musicwhore2014_categorized_blog.
+ * Flush out the transients used in musicwhorearchive_categorized_blog.
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  */
-function musicwhore2014_category_transient_flusher() {
+function musicwhorearchive_category_transient_flusher() {
 	// Like, beat it. Dig?
-	delete_transient( 'musicwhore2014_category_count' );
+	delete_transient( 'musicwhorearchive_category_count' );
 }
-add_action( 'edit_category', 'musicwhore2014_category_transient_flusher' );
-add_action( 'save_post',     'musicwhore2014_category_transient_flusher' );
+add_action( 'edit_category', 'musicwhorearchive_category_transient_flusher' );
+add_action( 'save_post',     'musicwhorearchive_category_transient_flusher' );
 
 /**
  * Display an optional post thumbnail.
@@ -162,9 +162,9 @@ add_action( 'save_post',     'musicwhore2014_category_transient_flusher' );
  * Wraps the post thumbnail in an anchor element on index
  * views, or a div element when on single views.
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  */
-function musicwhore2014_post_thumbnail() {
+function musicwhorearchive_post_thumbnail() {
 	if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
 		return;
 	}
@@ -175,7 +175,7 @@ function musicwhore2014_post_thumbnail() {
 	<div class="post-thumbnail">
 	<?php
 		if ( ( ! is_active_sidebar( 'sidebar-2' ) || is_page_template( 'page-templates/full-width.php' ) ) ) {
-			the_post_thumbnail( 'musicwhore2014-full-width' );
+			the_post_thumbnail( 'musicwhorearchive-full-width' );
 		} else {
 			the_post_thumbnail();
 		}
@@ -187,7 +187,7 @@ function musicwhore2014_post_thumbnail() {
 	<a class="post-thumbnail" href="<?php the_permalink(); ?>">
 	<?php
 		if ( ( ! is_active_sidebar( 'sidebar-2' ) || is_page_template( 'page-templates/full-width.php' ) ) ) {
-			the_post_thumbnail( 'musicwhore2014-full-width' );
+			the_post_thumbnail( 'musicwhorearchive-full-width' );
 		} else {
 			the_post_thumbnail();
 		}
@@ -195,4 +195,10 @@ function musicwhore2014_post_thumbnail() {
 	</a>
 
 	<?php endif; // End is_singular()
+}
+
+if (!function_exists('musicwhorearchive_display_artist_name')) {
+	function musicwhorearchive_display_artist_name ($artist) {
+		return !empty($artist->artist_asian_name_utf8) ? $artist->artist_asian_name_utf8 . ' (' . $artist->artist_display_name . ')' : $artist->artist_display_name;
+	}
 }

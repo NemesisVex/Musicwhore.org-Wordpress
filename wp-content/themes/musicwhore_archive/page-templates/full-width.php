@@ -3,8 +3,8 @@
  * Template Name: Full Width Page
  *
  * @package WordPress
- * @subpackage Musicwhore2014
- * @since Musicwhore2014 1.0
+ * @subpackage MusicwhoreArchive
+ * @since MusicwhoreArchive 1.0
  */
 
 get_header(); ?>
@@ -12,7 +12,7 @@ get_header(); ?>
 <div id="main-content" class="main-content">
 
 <?php
-	if ( is_front_page() && musicwhore2014_has_featured_posts() ) {
+	if ( is_front_page() && musicwhorearchive_has_featured_posts() ) {
 		// Include the featured content template.
 		get_template_part( 'featured-content' );
 	}

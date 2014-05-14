@@ -2,7 +2,6 @@
 
 if (!empty($filter)):
 	$artist = get_artist($filter);
-	$artist_entries = new WP_Query('post_type=post&meta_key=_mw_artist_id&meta_value=' . $filter . '&order=DESC');
 elseif (!empty($browse)):
 	$browse_filter = $browse == 'all' ? null : $browse;
 	$artists = get_all_artists($browse_filter);
@@ -16,7 +15,10 @@ endif;
 
 <?php
 if (!empty($artist)):
-	include(plugin_dir_path(__FILE__) . 'artist-artist-detail.php');
+	$section_path = plugin_dir_path(__FILE__) . 'artist-artist-detail';
+	if (!empty($section)) { $section_path .= '-' . $section; }
+	$section_path .= '.php';
+	include($section_path);
 elseif (!empty($artists)):
 	include(plugin_dir_path(__FILE__) . 'artist-artist-list.php');
 endif;

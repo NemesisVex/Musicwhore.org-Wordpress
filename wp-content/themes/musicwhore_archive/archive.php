@@ -13,8 +13,8 @@
  * @link http://codex.wordpress.org/Template_Hierarchy
  *
  * @package WordPress
- * @subpackage Musicwhore2014
- * @since Musicwhore2014 1.0
+ * @subpackage MusicwhoreArchive
+ * @since MusicwhoreArchive 1.0
  */
 
 get_header(); ?>
@@ -28,16 +28,16 @@ get_header(); ?>
 				<h2 class="page-title">
 					<?php
 						if ( is_day() ) :
-							printf( __( 'Daily Archives: %s', 'musicwhore2014' ), get_the_date() );
+							printf( __( 'Daily Archives: %s', 'musicwhorearchive' ), get_the_date() );
 
 						elseif ( is_month() ) :
-							printf( __( 'Monthly Archives: %s', 'musicwhore2014' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'musicwhore2014' ) ) );
+							printf( __( 'Monthly Archives: %s', 'musicwhorearchive' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'musicwhorearchive' ) ) );
 
 						elseif ( is_year() ) :
-							printf( __( 'Yearly Archives: %s', 'musicwhore2014' ), get_the_date( _x( 'Y', 'yearly archives date format', 'musicwhore2014' ) ) );
+							printf( __( 'Yearly Archives: %s', 'musicwhorearchive' ), get_the_date( _x( 'Y', 'yearly archives date format', 'musicwhorearchive' ) ) );
 
 						else :
-							_e( 'Archives', 'musicwhore2014' );
+							_e( 'Archives', 'musicwhorearchive' );
 
 						endif;
 					?>
@@ -57,7 +57,7 @@ get_header(); ?>
 
 					endwhile;
 					// Previous/next page navigation.
-					musicwhore2014_paging_nav();
+					musicwhorearchive_paging_nav();
 
 				else :
 					// If no content, include the "No posts found" template.
@@ -70,5 +70,5 @@ get_header(); ?>
 
 <?php
 get_sidebar( 'content' );
-get_sidebar();
+get_sidebar( 'musicwhorearchive' );
 get_footer();

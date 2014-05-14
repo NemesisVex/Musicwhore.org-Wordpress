@@ -5,8 +5,8 @@
  * The area of the page that contains comments and the comment form.
  *
  * @package WordPress
- * @subpackage Musicwhore2014
- * @since Musicwhore2014 1.0
+ * @subpackage MusicwhoreArchive
+ * @since MusicwhoreArchive 1.0
  */
 
 /*
@@ -24,18 +24,18 @@ if ( post_password_required() ) {
 
 	<h4 class="comments-title">
 		<?php
-			printf( _n( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'musicwhore2014' ),
+			printf( _n( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'musicwhorearchive' ),
 				number_format_i18n( get_comments_number() ), get_the_title() );
 		?>
 	</h4>
 
 	<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
 	<nav id="comment-nav-above" class="navigation comment-navigation" role="navigation">
-		<h4 class="screen-reader-text"><?php _e( 'Comment navigation', 'musicwhore2014' ); ?></h4>
+		<h4 class="screen-reader-text"><?php _e( 'Comment navigation', 'musicwhorearchive' ); ?></h4>
 		
 		<ul class="pager">
-			<li><div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'musicwhore2014' ) ); ?></div></li>
-			<li><div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'musicwhore2014' ) ); ?></div></li>
+			<li><div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'musicwhorearchive' ) ); ?></div></li>
+			<li><div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'musicwhorearchive' ) ); ?></div></li>
 		</ul>
 		
 		
@@ -54,10 +54,10 @@ if ( post_password_required() ) {
 
 	<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
 	<nav id="comment-nav-below" class="navigation comment-navigation" role="navigation">
-		<h4 class="screen-reader-text sr-only"><?php _e( 'Comment navigation', 'musicwhore2014' ); ?></h4>
+		<h4 class="screen-reader-text sr-only"><?php _e( 'Comment navigation', 'musicwhorearchive' ); ?></h4>
 		<ul class="pager">
-			<li><div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'musicwhore2014' ) ); ?></div></li>
-			<li><div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'musicwhore2014' ) ); ?></div></li>
+			<li><div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'musicwhorearchive' ) ); ?></div></li>
+			<li><div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'musicwhorearchive' ) ); ?></div></li>
 		</ul>
 		
 		
@@ -65,7 +65,7 @@ if ( post_password_required() ) {
 	<?php endif; // Check for comment navigation. ?>
 
 	<?php if ( ! comments_open() ) : ?>
-	<p class="no-comments"><?php _e( 'Comments are closed.', 'musicwhore2014' ); ?></p>
+	<p class="no-comments"><?php _e( 'Comments are closed.', 'musicwhorearchive' ); ?></p>
 	<?php endif; ?>
 
 	<?php endif; // have_comments() ?>

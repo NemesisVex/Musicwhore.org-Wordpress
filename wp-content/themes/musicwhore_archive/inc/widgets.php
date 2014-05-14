@@ -7,8 +7,8 @@
  * @link http://codex.wordpress.org/Widgets_API#Developing_Widgets
  *
  * @package WordPress
- * @subpackage Musicwhore2014
- * @since Musicwhore2014 1.0
+ * @subpackage MusicwhoreArchive
+ * @since MusicwhoreArchive 1.0
  */
 
 class Musicwhore2014_Ephemera_Widget extends WP_Widget {
@@ -17,7 +17,7 @@ class Musicwhore2014_Ephemera_Widget extends WP_Widget {
 	 * The supported post formats.
 	 *
 	 * @access private
-	 * @since Musicwhore2014 1.0
+	 * @since MusicwhoreArchive 1.0
 	 *
 	 * @var array
 	 */
@@ -26,14 +26,14 @@ class Musicwhore2014_Ephemera_Widget extends WP_Widget {
 	/**
 	 * Constructor.
 	 *
-	 * @since Musicwhore2014 1.0
+	 * @since MusicwhoreArchive 1.0
 	 *
 	 * @return Musicwhore2014_Ephemera_Widget
 	 */
 	public function __construct() {
-		parent::__construct( 'widget_musicwhore2014_ephemera', __( 'Twenty Fourteen Ephemera', 'musicwhore2014' ), array(
-			'classname'   => 'widget_musicwhore2014_ephemera',
-			'description' => __( 'Use this widget to list your recent Aside, Quote, Video, Audio, Image, Gallery, and Link posts.', 'musicwhore2014' ),
+		parent::__construct( 'widget_musicwhorearchive_ephemera', __( 'Twenty Fourteen Ephemera', 'musicwhorearchive' ), array(
+			'classname'   => 'widget_musicwhorearchive_ephemera',
+			'description' => __( 'Use this widget to list your recent Aside, Quote, Video, Audio, Image, Gallery, and Link posts.', 'musicwhorearchive' ),
 		) );
 	}
 
@@ -41,7 +41,7 @@ class Musicwhore2014_Ephemera_Widget extends WP_Widget {
 	 * Output the HTML for this widget.
 	 *
 	 * @access public
-	 * @since Musicwhore2014 1.0
+	 * @since MusicwhoreArchive 1.0
 	 *
 	 * @param array $args     An array of standard parameters for widgets in this theme.
 	 * @param array $instance An array of settings for this widget instance.
@@ -51,33 +51,33 @@ class Musicwhore2014_Ephemera_Widget extends WP_Widget {
 
 		switch ( $format ) {
 			case 'image':
-				$format_string      = __( 'Images', 'musicwhore2014' );
-				$format_string_more = __( 'More images', 'musicwhore2014' );
+				$format_string      = __( 'Images', 'musicwhorearchive' );
+				$format_string_more = __( 'More images', 'musicwhorearchive' );
 				break;
 			case 'video':
-				$format_string      = __( 'Videos', 'musicwhore2014' );
-				$format_string_more = __( 'More videos', 'musicwhore2014' );
+				$format_string      = __( 'Videos', 'musicwhorearchive' );
+				$format_string_more = __( 'More videos', 'musicwhorearchive' );
 				break;
 			case 'audio':
-				$format_string      = __( 'Audio', 'musicwhore2014' );
-				$format_string_more = __( 'More audio', 'musicwhore2014' );
+				$format_string      = __( 'Audio', 'musicwhorearchive' );
+				$format_string_more = __( 'More audio', 'musicwhorearchive' );
 				break;
 			case 'quote':
-				$format_string      = __( 'Quotes', 'musicwhore2014' );
-				$format_string_more = __( 'More quotes', 'musicwhore2014' );
+				$format_string      = __( 'Quotes', 'musicwhorearchive' );
+				$format_string_more = __( 'More quotes', 'musicwhorearchive' );
 				break;
 			case 'link':
-				$format_string      = __( 'Links', 'musicwhore2014' );
-				$format_string_more = __( 'More links', 'musicwhore2014' );
+				$format_string      = __( 'Links', 'musicwhorearchive' );
+				$format_string_more = __( 'More links', 'musicwhorearchive' );
 				break;
 			case 'gallery':
-				$format_string      = __( 'Galleries', 'musicwhore2014' );
-				$format_string_more = __( 'More galleries', 'musicwhore2014' );
+				$format_string      = __( 'Galleries', 'musicwhorearchive' );
+				$format_string_more = __( 'More galleries', 'musicwhorearchive' );
 				break;
 			case 'aside':
 			default:
-				$format_string      = __( 'Asides', 'musicwhore2014' );
-				$format_string_more = __( 'More asides', 'musicwhore2014' );
+				$format_string      = __( 'Asides', 'musicwhorearchive' );
+				$format_string_more = __( 'More asides', 'musicwhorearchive' );
 				break;
 		}
 
@@ -124,7 +124,7 @@ class Musicwhore2014_Ephemera_Widget extends WP_Widget {
 							if ( has_post_format( 'gallery' ) ) :
 
 								if ( post_password_required() ) :
-									the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'musicwhore2014' ) );
+									the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'musicwhorearchive' ) );
 								else :
 									$images = array();
 
@@ -159,7 +159,7 @@ class Musicwhore2014_Ephemera_Widget extends WP_Widget {
 						<?php endif; ?>
 						<p class="wp-caption-text">
 							<?php
-								printf( _n( 'This gallery contains <a href="%1$s" rel="bookmark">%2$s photo</a>.', 'This gallery contains <a href="%1$s" rel="bookmark">%2$s photos</a>.', $total_images, 'musicwhore2014' ),
+								printf( _n( 'This gallery contains <a href="%1$s" rel="bookmark">%2$s photo</a>.', 'This gallery contains <a href="%1$s" rel="bookmark">%2$s photos</a>.', $total_images, 'musicwhorearchive' ),
 									esc_url( get_permalink() ),
 									number_format_i18n( $total_images )
 								);
@@ -169,7 +169,7 @@ class Musicwhore2014_Ephemera_Widget extends WP_Widget {
 								endif;
 
 							else :
-								the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'musicwhore2014' ) );
+								the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'musicwhorearchive' ) );
 							endif;
 						?>
 					</div><!-- .entry-content -->
@@ -191,7 +191,7 @@ class Musicwhore2014_Ephemera_Widget extends WP_Widget {
 
 								if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) :
 							?>
-							<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'musicwhore2014' ), __( '1 Comment', 'musicwhore2014' ), __( '% Comments', 'musicwhore2014' ) ); ?></span>
+							<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'musicwhorearchive' ), __( '1 Comment', 'musicwhorearchive' ), __( '% Comments', 'musicwhorearchive' ) ); ?></span>
 							<?php endif; ?>
 						</div><!-- .entry-meta -->
 					</header><!-- .entry-header -->
@@ -203,7 +203,7 @@ class Musicwhore2014_Ephemera_Widget extends WP_Widget {
 			<a class="post-format-archive-link" href="<?php echo esc_url( get_post_format_link( $format ) ); ?>">
 				<?php
 					/* translators: used with More archives link */
-					printf( __( '%s <span class="meta-nav">&rarr;</span>', 'musicwhore2014' ), $format_string_more );
+					printf( __( '%s <span class="meta-nav">&rarr;</span>', 'musicwhorearchive' ), $format_string_more );
 				?>
 			</a>
 			<?php
@@ -224,7 +224,7 @@ class Musicwhore2014_Ephemera_Widget extends WP_Widget {
 	 *
 	 * Here is where any validation should happen.
 	 *
-	 * @since Musicwhore2014 1.0
+	 * @since MusicwhoreArchive 1.0
 	 *
 	 * @param array $new_instance New widget instance.
 	 * @param array $instance     Original widget instance.
@@ -243,7 +243,7 @@ class Musicwhore2014_Ephemera_Widget extends WP_Widget {
 	/**
 	 * Display the form for this widget on the Widgets page of the Admin area.
 	 *
-	 * @since Musicwhore2014 1.0
+	 * @since MusicwhoreArchive 1.0
 	 *
 	 * @param array $instance
 	 */
@@ -252,13 +252,13 @@ class Musicwhore2014_Ephemera_Widget extends WP_Widget {
 		$number = empty( $instance['number'] ) ? 2 : absint( $instance['number'] );
 		$format = isset( $instance['format'] ) && in_array( $instance['format'], $this->formats ) ? $instance['format'] : 'aside';
 		?>
-			<p><label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:', 'musicwhore2014' ); ?></label>
+			<p><label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:', 'musicwhorearchive' ); ?></label>
 			<input id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" class="widefat" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>"></p>
 
-			<p><label for="<?php echo esc_attr( $this->get_field_id( 'number' ) ); ?>"><?php _e( 'Number of posts to show:', 'musicwhore2014' ); ?></label>
+			<p><label for="<?php echo esc_attr( $this->get_field_id( 'number' ) ); ?>"><?php _e( 'Number of posts to show:', 'musicwhorearchive' ); ?></label>
 			<input id="<?php echo esc_attr( $this->get_field_id( 'number' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'number' ) ); ?>" type="text" value="<?php echo esc_attr( $number ); ?>" size="3"></p>
 
-			<p><label for="<?php echo esc_attr( $this->get_field_id( 'format' ) ); ?>"><?php _e( 'Post format to show:', 'musicwhore2014' ); ?></label>
+			<p><label for="<?php echo esc_attr( $this->get_field_id( 'format' ) ); ?>"><?php _e( 'Post format to show:', 'musicwhorearchive' ); ?></label>
 			<select id="<?php echo esc_attr( $this->get_field_id( 'format' ) ); ?>" class="widefat" name="<?php echo esc_attr( $this->get_field_name( 'format' ) ); ?>">
 				<?php foreach ( $this->formats as $slug ) : ?>
 				<option value="<?php echo esc_attr( $slug ); ?>"<?php selected( $format, $slug ); ?>><?php echo get_post_format_string( $slug ); ?></option>

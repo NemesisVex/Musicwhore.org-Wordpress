@@ -3,24 +3,24 @@
  * Implement Custom Header functionality for Twenty Fourteen
  *
  * @package WordPress
- * @subpackage Musicwhore2014
- * @since Musicwhore2014 1.0
+ * @subpackage MusicwhoreArchive
+ * @since MusicwhoreArchive 1.0
  */
 
 /**
  * Set up the WordPress core custom header settings.
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  *
- * @uses musicwhore2014_header_style()
- * @uses musicwhore2014_admin_header_style()
- * @uses musicwhore2014_admin_header_image()
+ * @uses musicwhorearchive_header_style()
+ * @uses musicwhorearchive_admin_header_style()
+ * @uses musicwhorearchive_admin_header_image()
  */
-function musicwhore2014_custom_header_setup() {
+function musicwhorearchive_custom_header_setup() {
 	/**
 	 * Filter Twenty Fourteen custom-header support arguments.
 	 *
-	 * @since Musicwhore2014 1.0
+	 * @since MusicwhoreArchive 1.0
 	 *
 	 * @param array $args {
 	 *     An array of custom-header support arguments.
@@ -35,26 +35,26 @@ function musicwhore2014_custom_header_setup() {
 	 *                                          the Appearance > Header screen.
 	 * }
 	 */
-	add_theme_support( 'custom-header', apply_filters( 'musicwhore2014_custom_header_args', array(
+	add_theme_support( 'custom-header', apply_filters( 'musicwhorearchive_custom_header_args', array(
 		'default-text-color'     => 'fff',
 		'width'                  => 1260,
 		'height'                 => 240,
 		'flex-height'            => true,
-		'wp-head-callback'       => 'musicwhore2014_header_style',
-		'admin-head-callback'    => 'musicwhore2014_admin_header_style',
-		'admin-preview-callback' => 'musicwhore2014_admin_header_image',
+		'wp-head-callback'       => 'musicwhorearchive_header_style',
+		'admin-head-callback'    => 'musicwhorearchive_admin_header_style',
+		'admin-preview-callback' => 'musicwhorearchive_admin_header_image',
 	) ) );
 }
-add_action( 'after_setup_theme', 'musicwhore2014_custom_header_setup' );
+add_action( 'after_setup_theme', 'musicwhorearchive_custom_header_setup' );
 
-if ( ! function_exists( 'musicwhore2014_header_style' ) ) :
+if ( ! function_exists( 'musicwhorearchive_header_style' ) ) :
 /**
  * Styles the header image and text displayed on the blog
  *
- * @see musicwhore2014_custom_header_setup().
+ * @see musicwhorearchive_custom_header_setup().
  *
  */
-function musicwhore2014_header_style() {
+function musicwhorearchive_header_style() {
 	$text_color = get_header_textcolor();
 
 	// If no custom color for text is set, let's bail.
@@ -63,7 +63,7 @@ function musicwhore2014_header_style() {
 
 	// If we get this far, we have custom styles.
 	?>
-	<style type="text/css" id="musicwhore2014-header-css">
+	<style type="text/css" id="musicwhorearchive-header-css">
 	<?php
 		// Has the text been hidden?
 		if ( ! display_header_text() ) :
@@ -85,20 +85,20 @@ function musicwhore2014_header_style() {
 	</style>
 	<?php
 }
-endif; // musicwhore2014_header_style
+endif; // musicwhorearchive_header_style
 
 
-if ( ! function_exists( 'musicwhore2014_admin_header_style' ) ) :
+if ( ! function_exists( 'musicwhorearchive_admin_header_style' ) ) :
 /**
  * Style the header image displayed on the Appearance > Header screen.
  *
- * @see musicwhore2014_custom_header_setup()
+ * @see musicwhorearchive_custom_header_setup()
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  */
-function musicwhore2014_admin_header_style() {
+function musicwhorearchive_admin_header_style() {
 ?>
-	<style type="text/css" id="musicwhore2014-admin-header-css">
+	<style type="text/css" id="musicwhorearchive-admin-header-css">
 	.appearance_page_custom-header #headimg {
 		background-color: #000;
 		border: none;
@@ -121,17 +121,17 @@ function musicwhore2014_admin_header_style() {
 	</style>
 <?php
 }
-endif; // musicwhore2014_admin_header_style
+endif; // musicwhorearchive_admin_header_style
 
-if ( ! function_exists( 'musicwhore2014_admin_header_image' ) ) :
+if ( ! function_exists( 'musicwhorearchive_admin_header_image' ) ) :
 /**
  * Create the custom header image markup displayed on the Appearance > Header screen.
  *
- * @see musicwhore2014_custom_header_setup()
+ * @see musicwhorearchive_custom_header_setup()
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  */
-function musicwhore2014_admin_header_image() {
+function musicwhorearchive_admin_header_image() {
 ?>
 	<div id="headimg">
 		<?php if ( get_header_image() ) : ?>
@@ -141,4 +141,4 @@ function musicwhore2014_admin_header_image() {
 	</div>
 <?php
 }
-endif; // musicwhore2014_admin_header_image
+endif; // musicwhorearchive_admin_header_image
