@@ -115,7 +115,7 @@ if (!class_exists('Musicwhore_Model')) {
 				$model = $alias = $args;
 			}
 			
-			include(plugin_dir_path(__FILE__) . strtolower($model) . '.php');
+			include_once(plugin_dir_path(__FILE__) . strtolower($model) . '.php');
 			$this->{$alias} = new $model();
 		}
 	}
