@@ -21,16 +21,16 @@
  * @link http://codex.wordpress.org/Plugin_API
  *
  * @package WordPress
- * @subpackage Musicwhore2014
- * @since Musicwhore2014 1.0
+ * @subpackage MusicwhoreArchive
+ * @since MusicwhoreArchive 1.0
  */
 
 /**
  * Set up the content width value based on the theme's design.
  *
- * @see musicwhore2014_content_width()
+ * @see musicwhorearchive_content_width()
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  */
 if ( ! isset( $content_width ) ) {
 	$content_width = 474;
@@ -43,7 +43,7 @@ if ( version_compare( $GLOBALS['wp_version'], '3.6', '<' ) ) {
 	require get_template_directory() . '/inc/back-compat.php';
 }
 
-if ( ! function_exists( 'musicwhore2014_setup' ) ) :
+if ( ! function_exists( 'musicwhorearchive_setup' ) ) :
 /**
  * Twenty Fourteen setup.
  *
@@ -53,22 +53,22 @@ if ( ! function_exists( 'musicwhore2014_setup' ) ) :
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support post thumbnails.
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  */
-function musicwhore2014_setup() {
+function musicwhorearchive_setup() {
 
 	/*
 	 * Make Twenty Fourteen available for translation.
 	 *
 	 * Translations can be added to the /languages/ directory.
 	 * If you're building a theme based on Twenty Fourteen, use a find and
-	 * replace to change 'musicwhore2014' to the name of your theme in all
+	 * replace to change 'musicwhorearchive' to the name of your theme in all
 	 * template files.
 	 */
-	load_theme_textdomain( 'musicwhore2014', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'musicwhorearchive', get_template_directory() . '/languages' );
 
 	// This theme styles the visual editor to resemble the theme style.
-	add_editor_style( array( 'css/editor-style.css', musicwhore2014_font_url() ) );
+	add_editor_style( array( 'css/editor-style.css', musicwhorearchive_font_url() ) );
 
 	// Add RSS feed links to <head> for posts and comments.
 	add_theme_support( 'automatic-feed-links' );
@@ -76,12 +76,12 @@ function musicwhore2014_setup() {
 	// Enable support for Post Thumbnails, and declare two sizes.
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size( 672, 372, true );
-	add_image_size( 'musicwhore2014-full-width', 1038, 576, true );
+	add_image_size( 'musicwhorearchive-full-width', 1038, 576, true );
 
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus( array(
-		'primary'   => __( 'Top primary menu', 'musicwhore2014' ),
-		'secondary' => __( 'Secondary menu in left sidebar', 'musicwhore2014' ),
+		'primary'   => __( 'Top primary menu', 'musicwhorearchive' ),
+		'secondary' => __( 'Secondary menu in left sidebar', 'musicwhorearchive' ),
 	) );
 
 	/*
@@ -101,116 +101,116 @@ function musicwhore2014_setup() {
 	) );
 
 	// This theme allows users to set a custom background.
-	add_theme_support( 'custom-background', apply_filters( 'musicwhore2014_custom_background_args', array(
+	add_theme_support( 'custom-background', apply_filters( 'musicwhorearchive_custom_background_args', array(
 		'default-color' => 'f5f5f5',
 	) ) );
 
 	// Add support for featured content.
 	add_theme_support( 'featured-content', array(
-		'featured_content_filter' => 'musicwhore2014_get_featured_posts',
+		'featured_content_filter' => 'musicwhorearchive_get_featured_posts',
 		'max_posts' => 6,
 	) );
 
 	// This theme uses its own gallery styles.
 	add_filter( 'use_default_gallery_style', '__return_false' );
 }
-endif; // musicwhore2014_setup
-add_action( 'after_setup_theme', 'musicwhore2014_setup' );
+endif; // musicwhorearchive_setup
+add_action( 'after_setup_theme', 'musicwhorearchive_setup' );
 
 /**
  * Adjust content_width value for image attachment template.
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  */
-function musicwhore2014_content_width() {
+function musicwhorearchive_content_width() {
 	if ( is_attachment() && wp_attachment_is_image() ) {
 		$GLOBALS['content_width'] = 810;
 	}
 }
-add_action( 'template_redirect', 'musicwhore2014_content_width' );
+add_action( 'template_redirect', 'musicwhorearchive_content_width' );
 
 /**
  * Getter function for Featured Content Plugin.
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  *
  * @return array An array of WP_Post objects.
  */
-function musicwhore2014_get_featured_posts() {
+function musicwhorearchive_get_featured_posts() {
 	/**
 	 * Filter the featured posts to return in Twenty Fourteen.
 	 *
-	 * @since Musicwhore2014 1.0
+	 * @since MusicwhoreArchive 1.0
 	 *
 	 * @param array|bool $posts Array of featured posts, otherwise false.
 	 */
-	return apply_filters( 'musicwhore2014_get_featured_posts', array() );
+	return apply_filters( 'musicwhorearchive_get_featured_posts', array() );
 }
 
 /**
  * A helper conditional function that returns a boolean value.
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  *
  * @return bool Whether there are featured posts.
  */
-function musicwhore2014_has_featured_posts() {
-	return ! is_paged() && (bool) musicwhore2014_get_featured_posts();
+function musicwhorearchive_has_featured_posts() {
+	return ! is_paged() && (bool) musicwhorearchive_get_featured_posts();
 }
 
 /**
  * Register three Twenty Fourteen widget areas.
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  */
-function musicwhore2014_widgets_init() {
+function musicwhorearchive_widgets_init() {
 	require get_template_directory() . '/inc/widgets.php';
 	register_widget( 'Musicwhore2014_Ephemera_Widget' );
 
 	register_sidebar( array(
-		'name'          => __( 'Primary Sidebar', 'musicwhore2014' ),
+		'name'          => __( 'Primary Sidebar', 'musicwhorearchive' ),
 		'id'            => 'sidebar-1',
-		'description'   => __( 'Main sidebar that appears on the left.', 'musicwhore2014' ),
+		'description'   => __( 'Main sidebar that appears on the left.', 'musicwhorearchive' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h3 class="widget-title">',
 		'after_title'   => '</h3>',
 	) );
 	register_sidebar( array(
-		'name'          => __( 'Content Sidebar', 'musicwhore2014' ),
+		'name'          => __( 'Content Sidebar', 'musicwhorearchive' ),
 		'id'            => 'sidebar-2',
-		'description'   => __( 'Additional sidebar that appears on the right.', 'musicwhore2014' ),
+		'description'   => __( 'Additional sidebar that appears on the right.', 'musicwhorearchive' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h3 class="widget-title">',
 		'after_title'   => '</h3>',
 	) );
 	register_sidebar( array(
-		'name'          => __( 'Footer Widget Area', 'musicwhore2014' ),
+		'name'          => __( 'Footer Widget Area', 'musicwhorearchive' ),
 		'id'            => 'sidebar-3',
-		'description'   => __( 'Appears in the footer section of the site.', 'musicwhore2014' ),
+		'description'   => __( 'Appears in the footer section of the site.', 'musicwhorearchive' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h3 class="widget-title">',
 		'after_title'   => '</h3>',
 	) );
 }
-add_action( 'widgets_init', 'musicwhore2014_widgets_init' );
+add_action( 'widgets_init', 'musicwhorearchive_widgets_init' );
 
 /**
  * Register Lato Google font for Twenty Fourteen.
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  *
  * @return string
  */
-function musicwhore2014_font_url() {
+function musicwhorearchive_font_url() {
 	$font_url = '';
 	/*
 	 * Translators: If there are characters in your language that are not supported
 	 * by Lato, translate this to 'off'. Do not translate into your own language.
 	 */
-	if ( 'off' !== _x( 'on', 'Lato font: on or off', 'musicwhore2014' ) ) {
+	if ( 'off' !== _x( 'on', 'Lato font: on or off', 'musicwhorearchive' ) ) {
 		$font_url = add_query_arg( 'family', urlencode( 'Lato:300,400,700,900,300italic,400italic,700italic' ), "//fonts.googleapis.com/css" );
 	}
 
@@ -220,28 +220,28 @@ function musicwhore2014_font_url() {
 /**
  * Enqueue scripts and styles for the front end.
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  */
-function musicwhore2014_scripts() {
+function musicwhorearchive_scripts() {
 	// Add Lato font, used in the main stylesheet.
-	wp_enqueue_style( 'musicwhore2014-lato', musicwhore2014_font_url(), array(), null );
+	wp_enqueue_style( 'musicwhorearchive-lato', musicwhorearchive_font_url(), array(), null );
 
 	// Add Genericons font, used in the main stylesheet.
 	wp_enqueue_style( 'genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.0.2' );
 
 	// Load our main stylesheet.
-	wp_enqueue_style( 'musicwhore2014-style', get_stylesheet_uri(), array( 'genericons' ) );
+	wp_enqueue_style( 'musicwhorearchive-style', get_stylesheet_uri(), array( 'genericons' ) );
 
 	// Load the Internet Explorer specific stylesheet.
-	wp_enqueue_style( 'musicwhore2014-ie', get_template_directory_uri() . '/css/ie.css', array( 'musicwhore2014-style', 'genericons' ), '20131205' );
-	wp_style_add_data( 'musicwhore2014-ie', 'conditional', 'lt IE 9' );
+	wp_enqueue_style( 'musicwhorearchive-ie', get_template_directory_uri() . '/css/ie.css', array( 'musicwhorearchive-style', 'genericons' ), '20131205' );
+	wp_style_add_data( 'musicwhorearchive-ie', 'conditional', 'lt IE 9' );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
 	if ( is_singular() && wp_attachment_is_image() ) {
-		wp_enqueue_script( 'musicwhore2014-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20130402' );
+		wp_enqueue_script( 'musicwhorearchive-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20130402' );
 	}
 
 	if ( is_active_sidebar( 'sidebar-3' ) ) {
@@ -249,39 +249,39 @@ function musicwhore2014_scripts() {
 	}
 
 	if ( is_front_page() && 'slider' == get_theme_mod( 'featured_content_layout' ) ) {
-		wp_enqueue_script( 'musicwhore2014-slider', get_template_directory_uri() . '/js/slider.js', array( 'jquery' ), '20131205', true );
-		wp_localize_script( 'musicwhore2014-slider', 'featuredSliderDefaults', array(
-			'prevText' => __( 'Previous', 'musicwhore2014' ),
-			'nextText' => __( 'Next', 'musicwhore2014' )
+		wp_enqueue_script( 'musicwhorearchive-slider', get_template_directory_uri() . '/js/slider.js', array( 'jquery' ), '20131205', true );
+		wp_localize_script( 'musicwhorearchive-slider', 'featuredSliderDefaults', array(
+			'prevText' => __( 'Previous', 'musicwhorearchive' ),
+			'nextText' => __( 'Next', 'musicwhorearchive' )
 		) );
 	}
 
-	wp_enqueue_script( 'musicwhore2014-script', get_template_directory_uri() . '/js/functions.js', array( 'jquery' ), '20140319', true );
+	wp_enqueue_script( 'musicwhorearchive-script', get_template_directory_uri() . '/js/functions.js', array( 'jquery' ), '20140319', true );
 }
-add_action( 'wp_enqueue_scripts', 'musicwhore2014_scripts' );
+add_action( 'wp_enqueue_scripts', 'musicwhorearchive_scripts' );
 
 /**
  * Enqueue Google fonts style to admin screen for custom header display.
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  */
-function musicwhore2014_admin_fonts() {
-	wp_enqueue_style( 'musicwhore2014-lato', musicwhore2014_font_url(), array(), null );
+function musicwhorearchive_admin_fonts() {
+	wp_enqueue_style( 'musicwhorearchive-lato', musicwhorearchive_font_url(), array(), null );
 }
-add_action( 'admin_print_scripts-appearance_page_custom-header', 'musicwhore2014_admin_fonts' );
+add_action( 'admin_print_scripts-appearance_page_custom-header', 'musicwhorearchive_admin_fonts' );
 
-if ( ! function_exists( 'musicwhore2014_the_attached_image' ) ) :
+if ( ! function_exists( 'musicwhorearchive_the_attached_image' ) ) :
 /**
  * Print the attached image with a link to the next attached image.
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  */
-function musicwhore2014_the_attached_image() {
+function musicwhorearchive_the_attached_image() {
 	$post                = get_post();
 	/**
 	 * Filter the default Twenty Fourteen attachment size.
 	 *
-	 * @since Musicwhore2014 1.0
+	 * @since MusicwhoreArchive 1.0
 	 *
 	 * @param array $dimensions {
 	 *     An array of height and width dimensions.
@@ -290,7 +290,7 @@ function musicwhore2014_the_attached_image() {
 	 *     @type int $width  Width of the image in pixels. Default 810.
 	 * }
 	 */
-	$attachment_size     = apply_filters( 'musicwhore2014_attachment_size', array( 810, 810 ) );
+	$attachment_size     = apply_filters( 'musicwhorearchive_attachment_size', array( 810, 810 ) );
 	$next_attachment_url = wp_get_attachment_url();
 
 	/*
@@ -337,13 +337,13 @@ function musicwhore2014_the_attached_image() {
 }
 endif;
 
-if ( ! function_exists( 'musicwhore2014_list_authors' ) ) :
+if ( ! function_exists( 'musicwhorearchive_list_authors' ) ) :
 /**
  * Print a list of all site contributors who published at least one post.
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  */
-function musicwhore2014_list_authors() {
+function musicwhorearchive_list_authors() {
 	$contributor_ids = get_users( array(
 		'fields'  => 'ID',
 		'orderby' => 'post_count',
@@ -369,7 +369,7 @@ function musicwhore2014_list_authors() {
 					<?php echo get_the_author_meta( 'description', $contributor_id ); ?>
 				</p>
 				<a class="button contributor-posts-link" href="<?php echo esc_url( get_author_posts_url( $contributor_id ) ); ?>">
-					<?php printf( _n( '%d Article', '%d Articles', $post_count, 'musicwhore2014' ), $post_count ); ?>
+					<?php printf( _n( '%d Article', '%d Articles', $post_count, 'musicwhorearchive' ), $post_count ); ?>
 				</a>
 			</div><!-- .contributor-summary -->
 		</div><!-- .contributor-info -->
@@ -392,12 +392,12 @@ endif;
  * 6. Single views.
  * 7. Featured content layout.
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  *
  * @param array $classes A list of existing body class values.
  * @return array The filtered body class list.
  */
-function musicwhore2014_body_classes( $classes ) {
+function musicwhorearchive_body_classes( $classes ) {
 	if ( is_multi_author() ) {
 		$classes[] = 'group-blog';
 	}
@@ -435,7 +435,7 @@ function musicwhore2014_body_classes( $classes ) {
 
 	return $classes;
 }
-add_filter( 'body_class', 'musicwhore2014_body_classes' );
+add_filter( 'body_class', 'musicwhorearchive_body_classes' );
 
 /**
  * Extend the default WordPress post classes.
@@ -443,31 +443,31 @@ add_filter( 'body_class', 'musicwhore2014_body_classes' );
  * Adds a post class to denote:
  * Non-password protected page with a post thumbnail.
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  *
  * @param array $classes A list of existing post class values.
  * @return array The filtered post class list.
  */
-function musicwhore2014_post_classes( $classes ) {
+function musicwhorearchive_post_classes( $classes ) {
 	if ( ! post_password_required() && ! is_attachment() && has_post_thumbnail() ) {
 		$classes[] = 'has-post-thumbnail';
 	}
 
 	return $classes;
 }
-add_filter( 'post_class', 'musicwhore2014_post_classes' );
+add_filter( 'post_class', 'musicwhorearchive_post_classes' );
 
 /**
  * Create a nicely formatted and more specific title element text for output
  * in head of document, based on current view.
  *
- * @since Musicwhore2014 1.0
+ * @since MusicwhoreArchive 1.0
  *
  * @param string $title Default title text for current view.
  * @param string $sep Optional separator.
  * @return string The filtered title.
  */
-function musicwhore2014_wp_title( $title, $sep ) {
+function musicwhorearchive_wp_title( $title, $sep ) {
 	global $paged, $page;
 
 	if ( is_feed() ) {
@@ -485,30 +485,30 @@ function musicwhore2014_wp_title( $title, $sep ) {
 
 	// Add a page number if necessary.
 	if ( $paged >= 2 || $page >= 2 ) {
-		$title = "$title $sep " . sprintf( __( 'Page %s', 'musicwhore2014' ), max( $paged, $page ) );
+		$title = "$title $sep " . sprintf( __( 'Page %s', 'musicwhorearchive' ), max( $paged, $page ) );
 	}
 
 	return $title;
 }
-add_filter( 'wp_title', 'musicwhore2014_wp_title', 10, 2 );
+add_filter( 'wp_title', 'musicwhorearchive_wp_title', 10, 2 );
 
-function musicwhore2014_page_menu_args( $args ) {
+function musicwhorearchive_page_menu_args( $args ) {
 	$args['show_home'] = false;
 	$args['container'] = false;
 	$args['menu_class'] = 'nav navbar-nav';
 	return $args;
 }
-add_filter( 'wp_page_menu_args', 'musicwhore2014_page_menu_args' );
+add_filter( 'wp_page_menu_args', 'musicwhorearchive_page_menu_args' );
 
 /**
- * musicwhore2014_page_menu
+ * musicwhorearchive_page_menu
  * 
- * musicwhore2014_page_menu overrides wp_page_menu to allow for Bootstrap markup.
+ * musicwhorearchive_page_menu overrides wp_page_menu to allow for Bootstrap markup.
  * 
  * @param mixed $args Arguments also accepted by wp_page_menu
  * @return mixed
  */
-function musicwhore2014_page_menu( $args = array() ) {
+function musicwhorearchive_page_menu( $args = array() ) {
 	$defaults = array('sort_column' => 'menu_order, post_title', 'menu_class' => 'menu', 'echo' => true, 'link_before' => '', 'link_after' => '', 'container' => 'div', 'container_class' => '', 'container_id' => '', 'menu_class' => '', 'menu_id' => '');
 	$args = wp_parse_args( $args, $defaults );
 	
@@ -577,17 +577,17 @@ function musicwhore2014_page_menu( $args = array() ) {
 		return $menu;
 }
 
-function musicwhore2014_get_cdn_uri() {
+function musicwhorearchive_get_cdn_uri() {
 	return VIGILANTMEDIA_CDN_BASE_URI;
 }
 
-function musicwhore2014_register_mt_id_patterns() {
+function musicwhorearchive_register_mt_id_patterns() {
 	if (function_exists('mt_id_mapper_register_pattern')) {
 		mt_id_mapper_register_pattern( array('pattern' => "/^\/(mw\/|)entry\/([0-9]+)/", 'offset' => 2) );
 		mt_id_mapper_register_pattern( array('pattern' => "/entry\.php\?entry_id=([0-9]+)/", 'offset' => 1) );
 	}
 }
-add_action( 'mt_id_mapper_pattern_setup', 'musicwhore2014_register_mt_id_patterns' );
+add_action( 'mt_id_mapper_pattern_setup', 'musicwhorearchive_register_mt_id_patterns' );
 
 // Implement Custom Header features.
 require get_template_directory() . '/inc/custom-header.php';
