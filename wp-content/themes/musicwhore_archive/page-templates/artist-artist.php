@@ -1,13 +1,25 @@
 <?php
 
+$filter = get_query_var('filter');
+$browse = get_query_var('browse');
+$section = get_query_var('section');
+
+$artist = null;
+$artists = null;
 if (!empty($filter)):
-	$artist = get_artist($filter);
+	if (function_exists('get_artist')):
+		$artist = get_artist($filter);
+	endif;
 elseif (!empty($browse)):
 	$browse_filter = $browse == 'all' ? null : $browse;
-	$artists = get_all_artists($browse_filter);
+	if (function_exists('get_all_artists')):
+		$artists = get_all_artists($browse_filter);
+	endif;
 else:
 	$browse_filter = 'a';
-	$artists = get_all_artists($browse_filter);
+	if (function_exists('get_all_artists')):
+		$artists = get_all_artists($browse_filter);
+	endif;
 endif;
 ?>
 

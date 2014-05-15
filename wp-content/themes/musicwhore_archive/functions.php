@@ -589,6 +589,45 @@ function musicwhorearchive_register_mt_id_patterns() {
 }
 add_action( 'mt_id_mapper_pattern_setup', 'musicwhorearchive_register_mt_id_patterns' );
 
+//function musicwhorearchive_amazon_request($asin) {
+//	$parameters['AssociateTag'] = 'musicwhore-20';
+//	$parameters['Operation'] = 'ItemLookup';
+//	$parameters['ItemId'] = $asin;
+//	$parameters["Timestamp"] = gmdate("Y-m-d\TH:i:s\Z");
+//	$parameters["Version"] = '2009-03-01';
+//	$parameters["AWSAccessKeyId"] = ACCESS_KEY_ID;
+//	$parameters["Service"] = 'AWSECommerceService';
+//	
+//	// Sort paramters
+//	ksort($parameters);
+//
+//	// re-build the request
+//	$request = array();
+//	foreach ($parameters as $parameter => $value)
+//	{
+//		$parameter = str_replace("%7E", "~", rawurlencode($parameter));
+//		$value = str_replace("%7E", "~", rawurlencode($value));
+//		$request[] = $parameter . "=" . $value;
+//	}
+//	$request = implode("&", $request);
+//
+//	$signature_string = "GET" . chr(10) . 'ecs.amazonaws.com' . chr(10) . '/onca/xml' . chr(10) . $request;
+//
+//	$signature = urlencode(base64_encode(hash_hmac("sha256", $signature_string, SECRET_ACCESS_KEY, true)));
+//
+//	$request = 'http://ecs.amazonaws.com/onca/xml?' . $request . "&Signature=" . $signature;
+//	
+//	$get_result = wp_remote_get($request);
+//	echo '<pre>';
+//	echo $signature_string . "\n";
+//	echo $request;
+//	print_r($get_result);
+//	echo '</pre>';
+//	return false;
+//	
+//
+//}
+
 // Implement Custom Header features.
 require get_template_directory() . '/inc/custom-header.php';
 
