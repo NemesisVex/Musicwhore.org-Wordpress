@@ -6,10 +6,11 @@
  * @author Greg Bueno
  */
 
-require_once(plugin_dir_path(__FILE__) . '/models/musicwhore_artist.php');
-require_once(plugin_dir_path(__FILE__) . '/models/musicwhore_album.php');
-require_once(plugin_dir_path(__FILE__) . '/models/musicwhore_release.php');
-require_once(plugin_dir_path(__FILE__) . '/models/musicwhore_track.php');
+require_once(plugin_dir_path(__FILE__) . 'models/musicwhore_artist.php');
+require_once(plugin_dir_path(__FILE__) . 'models/musicwhore_album.php');
+require_once(plugin_dir_path(__FILE__) . 'models/musicwhore_release.php');
+require_once(plugin_dir_path(__FILE__) . 'models/musicwhore_track.php');
+require_once(plugin_dir_path(__FILE__) . 'musicwhore_artist_connector_aws.php');
 
 if (!function_exists('get_all_artists')) {
 	function get_all_artists($filter = null) {
@@ -71,10 +72,26 @@ if (!function_exists('get_release')) {
 	}
 }
 
+if (!function_exists('get_release_from_amazon')) {
+	function get_release_from_amazon($asin, $country_name = 'United States') {
+		$model = new Musicwhore_Release();
+		$release = $model->get_release_from_amazon($asin, $country_name);
+		return $release;
+	}
+}
+
 if (!function_exists('get_release_tracks')) {
 	function get_release_tracks($release_id) {
 		$model = new Musicwhore_Track();
 		$tracks = $model->get_release_tracks($release_id);
+		return $tracks;
+	}
+}
+
+if (!function_exists('get_release_tracks_from_amazon')) {
+	function get_release_tracks_from_amazon($asin, $country_name = 'United States') {
+		$model = new Musicwhore_Track();
+		$tracks = $model->get_amazon_tracks($asin, $country_name);
 		return $tracks;
 	}
 }
