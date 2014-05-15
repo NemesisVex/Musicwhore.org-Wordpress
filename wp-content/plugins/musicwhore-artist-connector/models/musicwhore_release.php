@@ -49,6 +49,26 @@ if (!class_exists('Musicwhore_Release')) {
 			
 			return $releases;
 		}
+		
+		public function get_release_from_amazon($asin, $country_name = 'United States') {
+			
+			$locale = array_search($country_name, Musicwhore_Artist_Connector_Aws::$_locale_labels);
+			if (empty($locale)) {
+				$locale = 'us';
+			}
+			
+			$aws = new Musicwhore_Artist_Connector_Aws( array('locale' => $locale) );
+			
+			$parameters['ResponseGroup'] = 'Large';
+			$wp_results = $aws->get($asin, $parameters);
+			$aws_results = simplexml_load_string($wp_results['body']);
+			
+			if (!empty($aws_results->Request->Errors)) {
+				throw new Exception($aws_results->Request->Errors->Error->Message);
+			}
+			
+			return $aws_results->Items->Item;
+		}
 	}
 }
 

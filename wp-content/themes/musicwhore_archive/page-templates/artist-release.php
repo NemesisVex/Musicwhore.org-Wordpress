@@ -4,11 +4,23 @@ if (!empty($filter)):
 	$release = get_release($filter);
 	$artist = $release->album->artist;
 	
-	if (!empty($release->tracks)) {
+	if (!empty($release->release_asin_num)):
+		$aws_item = get_release_from_amazon($release->release_asin_num, $release->release_country_name);
+		if (!empty($aws_item)):
+			$release->aws_item = $aws_item;
+			$release->tracks = Musicwhore_Track::parse_aws_tracks($aws_item->Tracks);
+			$cover = array( 'url' => (string) $release->aws_item->MediumImage->URL);
+		endif;
+	endif;
+	
+	if (!empty($release->tracks)):
 		$last_track_index = max(array_keys($release->tracks));
 		$num_of_discs = $release->tracks[$last_track_index]->track_disc_num;
-	}
-	$cover = musicwhorearchive_parse_release_image($release);
+	endif;
+	
+	if (empty($cover)):
+		$cover = musicwhorearchive_parse_release_image($release);
+	endif;
 ?>
 
 <h2>Artists</h2>
@@ -39,9 +51,9 @@ if (!empty($filter)):
 	<thead>
 		<tr>
 		<?php if ($num_of_discs > 1): ?>
-			<th>Disc</th>
+			<th>Disc #</th>
 		<?php endif; ?>
-			<th>Track</th>
+			<th>Track #</th>
 			<th>Title</th>
 		</tr>
 	</thead>
@@ -57,6 +69,13 @@ if (!empty($filter)):
 	<?php endforeach; ?>
 	</tbody>
 </table>
+
+<?php if (!empty($release->aws_item)): ?>
+<p>
+	<small>Track listing and cover provided by <a href="http://amazon.com/">Amazon</a>.</small>
+</p>
+<?php endif; ?>
+
 
 <?php endif; ?>
 
