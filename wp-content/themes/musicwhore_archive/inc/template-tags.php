@@ -202,3 +202,53 @@ if (!function_exists('musicwhorearchive_display_artist_name')) {
 		return !empty($artist->artist_asian_name_utf8) ? $artist->artist_asian_name_utf8 . ' (' . $artist->artist_display_name . ')' : $artist->artist_display_name;
 	}
 }
+
+if (!function_exists('musicwhorearchive_parse_artist_image')) {
+	function musicwhorearchive_parse_artist_image($artist) {
+		$wp_upload_dir = wp_upload_dir();
+		$wp_basedir = $wp_upload_dir['basedir'];
+		$wp_baseurl = $wp_upload_dir['baseurl'];
+		$artist_image_dir = $wp_basedir . '/archive/images/artists/' . $artist->artist_file_system . '.jpg';
+		if (file_exists($artist_image_dir)) {
+			$artist_image_url = $wp_baseurl . '/archive/images/artists/' . $artist->artist_file_system . '.jpg';
+		}
+		return array( 'dir' => $artist_image_dir, 'url' => $artist_image_url );
+	}
+}
+
+if (!function_exists('musicwhorearchive_parse_discog_image')) {
+	function musicwhorearchive_parse_discog_image($image, $file_system) {
+		if (empty($image)) {
+			return false;
+		}
+		
+		$wp_upload_dir = wp_upload_dir();
+		$wp_basedir = $wp_upload_dir['basedir'];
+		$wp_baseurl = $wp_upload_dir['baseurl'];
+		$discog_image_dir = $wp_basedir . '/archive/images/discog/' . substr($file_system, 0, 1) . '/' . $file_system . '/' . $image;
+		if (file_exists($discog_image_dir)) {
+			$discog_image_url = $wp_baseurl . '/archive/images/discog/' . substr($file_system, 0, 1) . '/' . $file_system . '/' . $image;
+		}
+		return array( 'dir' => $discog_image_dir, 'url' => $discog_image_url );
+	}
+}
+
+if (!function_exists('musicwhorearchive_parse_release_image')) {
+	function musicwhorearchive_parse_release_image($release, $artist = null) {
+		if (empty($artist)) {
+			$artist = $release->album->artist;
+		}
+		
+		return musicwhorearchive_parse_discog_image($release->release_image, $artist->artist_file_system);
+	}
+}
+
+if (!function_exists('musicwhorearchive_parse_album_image')) {
+	function musicwhorearchive_parse_album_image($album, $artist = null) {
+		if (empty($artist)) {
+			$artist = $album->artist;
+		}
+		
+		return musicwhorearchive_parse_discog_image($album->album_image, $artist->artist_file_system);
+	}
+}

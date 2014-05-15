@@ -8,9 +8,6 @@
  */
 
 $module = get_query_var('module');
-$filter = get_query_var('filter');
-$browse = get_query_var('browse');
-$section = get_query_var('section');
 
 get_header(); ?>
 

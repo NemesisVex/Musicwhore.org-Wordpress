@@ -16,11 +16,15 @@ if (!class_exists('Musicwhore_Artist')) {
 		
 		public function __construct() {
 			parent::__construct();
+			$this->load_relationship( array( 'model' => 'Musicwhore_Artist_Personnel', 'alias' => 'members' ) );
 		}
 		
 		public function get($id, $args = null) {
 			$artist = parent::get($id, $args);
-			$artist->artist_display_name = $this->format_artist_name($artist);
+			if (!empty($artist)) {
+				$artist->artist_display_name = $this->format_artist_name($artist);
+				$artist->artist_members = $this->members->get_artist_members($id);
+			}
 			return $artist;
 		}
 		

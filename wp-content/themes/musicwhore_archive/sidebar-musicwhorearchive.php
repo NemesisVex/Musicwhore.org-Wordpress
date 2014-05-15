@@ -1,7 +1,10 @@
 <div id="musicwhorearchive" class="col-md-3 col-md-offset-1">
 	
 	<?php
-	$artists_nav = get_artists_nav();
+	$artists_nav = null;
+	if (function_exists('get_artists_nav')):
+		$artists_nav = get_artists_nav();
+	endif;
 	if (!empty($artists_nav)):
 	?>
 	<h3>Artist directory</h3>

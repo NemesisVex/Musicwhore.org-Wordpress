@@ -18,6 +18,7 @@ if (!class_exists('Musicwhore_Release')) {
 			parent::__construct();
 			$this->load_relationship( array( 'model' => 'Musicwhore_Album', 'alias' => 'album') );
 			$this->load_relationship( array( 'model' => 'Musicwhore_Release_Format', 'alias' => 'format' ) );
+			$this->load_relationship( array( 'model' => 'Musicwhore_Album_Musicbrainz', 'alias' => 'musicbrainz' ) );
 		}
 		
 		public function get($id, $args = null) {
@@ -26,6 +27,7 @@ if (!class_exists('Musicwhore_Release')) {
 				$format = $this->format->get($release->release_format_id);
 				$release->release_format_name = $format->format_name;
 				$release->release_format_alias = $format->format_alias;
+				$release->release_musicbrainz_id = $this->musicbrainz->get_many_by('mb_album_id', $id);
 			}
 			return $release;
 		}
