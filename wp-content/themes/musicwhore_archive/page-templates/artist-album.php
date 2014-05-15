@@ -2,6 +2,7 @@
 if (!empty($filter)):
 	$album = get_album($filter);
 	$artist = $album->artist;
+	$cover = musicwhorearchive_parse_album_image($album);
 ?>
 
 <h2>Artists</h2>
@@ -9,6 +10,12 @@ if (!empty($filter)):
 <h3><?php echo musicwhorearchive_display_artist_name($artist); ?></h3>
 
 <?php include(plugin_dir_path(__FILE__) . 'artist-artist-detail-nav.php'); ?>
+
+<?php if (!empty($cover['url'])): ?>
+<p>
+	<img src="<?php echo $cover['url']; ?>" alt="[<?php echo $album->album_title ?>]"  title="[<?php echo $album->album_title ?>]" />
+</p>
+<?php endif; ?>
 
 <h4><?php echo $album->album_title; ?></h4>
 
