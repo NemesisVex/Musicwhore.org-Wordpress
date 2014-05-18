@@ -1,0 +1,6 @@
+[submodule "wp-content/plugins/musicwhore-artist-connector"]
+	path = wp-content/plugins/musicwhore-artist-connector
+	url = git@bitbucket.org:NemesisVex/musicwhore-artist-connector-for-wordpress.git
+[submodule "wp-content/plugins/movabletype-id-mapper"]
+	path = wp-content/plugins/movabletype-id-mapper
+	url = git@bitbucket.org:NemesisVex/movable-type-id-mapper-for-wordpress.git
