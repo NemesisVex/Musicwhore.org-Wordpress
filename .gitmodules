@@ -4,3 +4,6 @@
 [submodule "wp-content/plugins/movabletype-id-mapper"]
 	path = wp-content/plugins/movabletype-id-mapper
 	url = git@bitbucket.org:NemesisVex/movable-type-id-mapper-for-wordpress.git
+[submodule "wp-content/themes/musicwhore_archive"]
+	path = wp-content/themes/musicwhore_archive
+	url = git@bitbucket.org:NemesisVex/musicwhore.org-archive-theme-for-wordpress.git
