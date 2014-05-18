@@ -1,0 +1,15 @@
+[submodule "wp-content/plugins/musicwhore-artist-connector"]
+	path = wp-content/plugins/musicwhore-artist-connector
+	url = git@bitbucket.org:NemesisVex/musicwhore-artist-connector-for-wordpress.git
+[submodule "wp-content/plugins/movabletype-id-mapper"]
+	path = wp-content/plugins/movabletype-id-mapper
+	url = git@bitbucket.org:NemesisVex/movable-type-id-mapper-for-wordpress.git
+[submodule "wp-content/themes/musicwhore_archive"]
+	path = wp-content/themes/musicwhore_archive
+	url = git@bitbucket.org:NemesisVex/musicwhore.org-archive-theme-for-wordpress.git
+[submodule "wp-content/themes/musicwhore2014"]
+	path = wp-content/themes/musicwhore2014
+	url = git@bitbucket.org:NemesisVex/musicwhore-2014-theme-for-wordpress.git
+[submodule "wp-content/themes/musicwhore"]
+	path = wp-content/themes/musicwhore
+	url = git@bitbucket.org:NemesisVex/musicwhore-2012-theme-for-wordpress.git
