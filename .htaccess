@@ -16,6 +16,7 @@ RewriteRule . index.php [L]
 
 SetEnvIf HOST wp-dev.musicwhore.org dev
 SetEnvIf HOST wp-test.musicwhore.org test
+SetEnvIfNoCase Referer semalt.com spammer=yes
 AuthType Basic
 AuthUserFile /home/nemesisv/.htpasswd
 AuthName "Musicwhore.org WordPress development site"
@@ -25,4 +26,5 @@ Order allow,deny
 Allow from all
 Deny from env=dev
 Deny from env=test
+Deny from env=spammer
 Satisfy any
