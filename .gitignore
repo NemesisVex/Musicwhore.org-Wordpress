@@ -4,7 +4,8 @@ wp-config.php
 wp-content/uploads/
 wp-content/plugins/movabletype-id-mapper/
 wp-content/plugins/musicwhore-artist-connector/
-wp-content/plugins/bootstrap-overrides/
+wp-content/mu-plugins/bootstrap-overrides/
 wp-content/themes/musicwhore/
 wp-content/themes/musicwhore2014/
+wp-content/themes/musicwhore2015/
 wp-content/themes/musicwhore_archive/
