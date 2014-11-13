@@ -12,8 +12,8 @@ wp-content/backup-db/
 wp-content/backups/
 wp-content/blogs.dir/
 wp-content/cache/
-# wp-content/mu-plugins/
-# wp-content/plugins/
+wp-content/mu-plugins/
+wp-content/plugins/
 !wp-content/plugins/hello.php
 !wp-content/plugins/index.php
 wp-content/sunrise.php
