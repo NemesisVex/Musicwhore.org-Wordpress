@@ -17,12 +17,6 @@ RewriteRule . index.php [L]
 SetEnvIf HOST wp-dev.musicwhore.org dev
 SetEnvIf HOST wp-test.musicwhore.org test
 SetEnvIfNoCase Referer semalt.com spammer=yes
-SetEnvIfNoCase Referer bajarcorridos.com spammer=yes
-SetEnvIfNoCase Referer taggify.net spammer=yes
-SetEnvIfNoCase Referer lexteckgames.com spammer=yes
-SetEnvIfNoCase Referer zonaleros.com spammer=yes
-SetEnvIfNoCase Referer lblizzboygames.net spammer=yes
-SetEnvIfNoCase Referer bajaryoutube.com spammer=yes
 AuthType Basic
 AuthUserFile /home/nemesisv/.htpasswd
 AuthName "Musicwhore.org WordPress development site"
