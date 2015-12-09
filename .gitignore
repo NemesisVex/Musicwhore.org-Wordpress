@@ -2,6 +2,7 @@
 ### WordPress template
 *.log
 .htaccess
+.well-known
 configuration.php
 environment.php
 sitemap.xml
