@@ -1,5 +1,10 @@
 # BEGIN WordPress
 RewriteEngine On
+
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+Header always set Content-Security-Policy "upgrade-insecure-requests;"
+
 RewriteBase /
 RewriteRule ^index\.php - [L]
 
@@ -15,8 +20,16 @@ RewriteRule ^(wp-(content|admin|includes).*) $1 [L]
 RewriteRule ^(.*\.php)$ $1 [L]
 RewriteRule . index.php [L]
 
-SetEnvIf HOST wp-dev.musicwhore.org dev
-SetEnvIf HOST wp-test.musicwhore.org test
+SetEnvIf HOST dev.musicwhore.org dev
+SetEnvIf HOST dev.archive.musicwhore.org dev
+SetEnvIf HOST dev.reviews.musicwhore.org dev
+SetEnvIf HOST dev.filmwhore.org dev
+SetEnvIf HOST dev.tvwhore.org dev
+SetEnvIf HOST test.musicwhore.org test
+SetEnvIf HOST test.archive.musicwhore.org test
+SetEnvIf HOST test.reviews.musicwhore.org test
+SetEnvIf HOST test.filmwhore.org test
+SetEnvIf HOST test.tvwhore.org test
 SetEnvIfNoCase Referer semalt.com spammer=yes
 AuthType Basic
 AuthUserFile /home/nemesisv/.htpasswd
