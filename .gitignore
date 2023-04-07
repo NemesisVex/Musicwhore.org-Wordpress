@@ -8,6 +8,7 @@ environment.php
 sitemap.xml
 sitemap.xml.gz
 wp-config.php
+wp-config-ddev.php
 wp-content/advanced-cache.php
 wp-content/backup-db/
 wp-content/backups/
