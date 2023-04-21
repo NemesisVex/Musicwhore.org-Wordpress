@@ -26,3 +26,6 @@ wp-content/themes/musicwhore_archive/
 wp-content/upgrade/
 wp-content/uploads/
 wp-content/wp-cache-config.php
+*.sql
+*.sql.gz
+_DS.Store
