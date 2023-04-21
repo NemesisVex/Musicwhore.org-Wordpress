@@ -1,12 +1,16 @@
 name: musicwhore
 type: wordpress
 docroot: ""
-php_version: "7.4"
+php_version: "8.1"
 webserver_type: nginx-fpm
 router_http_port: "80"
 router_https_port: "443"
 xdebug_enabled: false
-additional_hostnames: []
+additional_hostnames:
+  - filmwhore
+  - tvwhore
+  - reviews
+  - archive
 additional_fqdns: []
 mariadb_version: "10.3"
 mysql_version: ""
