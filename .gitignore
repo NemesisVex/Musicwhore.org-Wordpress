@@ -1,0 +1,15 @@
+# Created by .gitignore support plugin (hsz.mobi)
+### WordPress template
+*.log
+*.sql
+*.sql.gz
+.htaccess
+.well-known
+.DS_Store
+/*
+!/.ddev
+!/.htaccess.deploy
+!/.gitignore
+wp-admin/*
+wp-content/*
+wp-includes/*
