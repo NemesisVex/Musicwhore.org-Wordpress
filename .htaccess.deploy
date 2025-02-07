@@ -34,7 +34,6 @@ SetEnvIfNoCase Referer semalt.com spammer=yes
 AuthType Basic
 AuthUserFile /home/nemesisv/.htpasswd
 AuthName "Musicwhore.org WordPress development site"
-require valid-user
 
 Order allow,deny
 Allow from all
@@ -42,4 +41,5 @@ Deny from env=dev
 Deny from env=test
 Deny from env=spammer
 Satisfy any
+Require valid-user
 # END WordPress
