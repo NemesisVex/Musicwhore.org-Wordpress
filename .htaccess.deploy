@@ -20,6 +20,8 @@ RewriteRule ^(wp-(content|admin|includes).*) $1 [L]
 RewriteRule ^(.*\.php)$ $1 [L]
 RewriteRule . index.php [L]
 
+ErrorDocument 401 default
+
 SetEnvIf Host "^musicwhore\.org" noauth=1
 SetEnvIf Host "www\.musicwhore\.org" noauth=1
 
