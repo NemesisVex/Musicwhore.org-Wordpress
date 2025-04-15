@@ -20,26 +20,19 @@ RewriteRule ^(wp-(content|admin|includes).*) $1 [L]
 RewriteRule ^(.*\.php)$ $1 [L]
 RewriteRule . index.php [L]
 
-SetEnvIf HOST dev.musicwhore.org dev
-SetEnvIf HOST dev.archive.musicwhore.org dev
-SetEnvIf HOST dev.reviews.musicwhore.org dev
-SetEnvIf HOST dev.filmwhore.org dev
-SetEnvIf HOST dev.tvwhore.org dev
-SetEnvIf HOST test.musicwhore.org test
-SetEnvIf HOST test.archive.musicwhore.org test
-SetEnvIf HOST test.reviews.musicwhore.org test
-SetEnvIf HOST test.filmwhore.org test
-SetEnvIf HOST test.tvwhore.org test
-SetEnvIfNoCase Referer semalt.com spammer=yes
+SetEnvIf Host "^musicwhore\.org" noauth=1
+SetEnvIf Host "www\.musicwhore\.org" noauth=1
+
 AuthType Basic
+AuthGroupFile /dev/null
 AuthUserFile /home/nemesisv/.htpasswd
 AuthName "Musicwhore.org WordPress development site"
-require valid-user
 
-Order allow,deny
-Allow from all
-Deny from env=dev
-Deny from env=test
-Deny from env=spammer
-Satisfy any
+<IfModule mod_authz_core.c>
+    <RequireAny>
+        Require env noauth
+        Require valid-user
+    </RequireAny>
+</IfModule>
+
 # END WordPress
