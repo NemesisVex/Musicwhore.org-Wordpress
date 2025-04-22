@@ -23,6 +23,8 @@ RewriteRule . index.php [L]
 ErrorDocument 401 default
 
 SetEnvIf Host "^musicwhore\.org" noauth=1
+SetEnvIf Host "archive\.musicwhore\.org" noauth=1
+SetEnvIf Host "reviews\.musicwhore\.org" noauth=1
 SetEnvIf Host "www\.musicwhore\.org" noauth=1
 
 AuthType Basic
